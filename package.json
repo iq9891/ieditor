@@ -100,10 +100,13 @@
     "not ie <= 8"
   ],
   "lint-staged": {
-    "src/xeditor/**/*.js": [
+    "src/core/*.js": [
       "npm run eslint"
     ],
-    "src/assets/styles/*.scss": [
+    "src/shared/*.js": [
+      "npm run eslint"
+    ],
+    "src/style/*.scss": [
       "npm run stylelint"
     ]
   },
