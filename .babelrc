@@ -1,0 +1,25 @@
+{
+  "presets": [
+    ["env", { "modules": false }],
+    "stage-2"
+  ],
+  "comments": false,
+  "env": {
+    "testing": {
+      "plugins": [
+        "transform-runtime",
+        ["transform-strict-mode", {
+          "strict": false
+        }],
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-runtime",
+        ["transform-strict-mode", {
+          "strict": false
+        }],
+      ]
+    }
+  }
+}
