@@ -15,10 +15,14 @@ const IText = class {
   }
 
   init() {
+    const contents = this.getChilds();
+    // 渲染
     this.render();
 
     this.$text = $(`#${this.prefix}text${this.uid}`);
     this.$wrap = $(`#${this.prefix}wrap${this.uid}`);
+    // 修复之前的内容
+    this.setHtml(contents.length > 0 ? contents : '<p>这里是内容</p>');
   }
 
   render() {
@@ -101,10 +105,47 @@ const IText = class {
       }
       const txtHtml = this.$text.html().toLowerCase().trim();
 
-      if (txtHtml === '<p><br></p>' || txtHtml === '<div><br></div>') {
+      if (txtHtml === '<p><br></p>') {
         e.preventDefault();
       }
     });
+  }
+  // 获取之前里面内容
+  getChilds() {
+    const children = this.$editor.html();
+    this.$editor.html('');
+    return children;
+  }
+  /**
+  * 设置内容
+  * @param {String} html 内容
+  */
+  setHtml(html = '') {
+    if (html) {
+      this.$text.html(html);
+    }
+    this.cursorEnd();
+  }
+
+  /**
+  * 新建选区，移动光标到最后
+  */
+  cursorEnd() {
+    const { editor } = this;
+    const $last = this.$text.children().last();
+    let range = null;
+    if (window.getSelection) {
+      $last[0].focus();
+      range = window.getSelection();
+      range.selectAllChildren($last[0]);
+      range.collapseToEnd();
+    } else if (document.selection) {
+      range = document.selection.createTextRange();
+      range.moveToElementText($last);
+      range.collapse(false);
+      // 避免产生空格
+      range.select();
+    }
   }
 }
 

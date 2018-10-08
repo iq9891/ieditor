@@ -1,5 +1,3 @@
-import { warn } from './util';
-
 // 声明化字符串方法
 const xToString = Object.prototype.toString;
 /**
@@ -84,3 +82,10 @@ export const forEach = (obj, fn) => {
      value: val,
    });
  };
+ /**
+  * 查找对象上是否有属性
+  * @param {object} obj 定义属性的对象
+  * @param {string} key 定义的属性
+  */
+ const hasOwnProperty = Object.prototype.hasOwnProperty;
+ export const hasOwn = (obj, key) => hasOwnProperty.call(obj, key);
