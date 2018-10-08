@@ -66,9 +66,21 @@ export const forEach = (obj, fn) => {
     }
   }
   return obj;
-}
+};
 /**
  * 对象提取键值的封装
  * @param {object} obj 提取的对象
  */
  export const keys = obj => Object.keys(obj);
+
+ /**
+  * 定义一个属性
+  * @param {object} obj 定义属性的对象
+  * @param {string} key 定义的属性
+  * @param {any} val 定义属性的值
+  */
+ export const def = (obj, key, val) => {
+   Object.defineProperty(obj, key, {
+     value: val,
+   });
+ };

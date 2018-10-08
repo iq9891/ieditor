@@ -45,9 +45,9 @@
     <script src="https://unpkg.com/ieditor"></script>
   </head>
   <body>
-    <div id="xe" class="xe"></div>
+    <div id="ied" class="ied"></div>
     <script>
-    var myEditor = new window.IEditor('#xe')
+    var myEditor = new window.IEditor('#ied')
     myEditor.create();
     </script>
   </body>

@@ -1,42 +1,22 @@
-import compiler from './compiler';
-// import menus from '../menu';
 import $ from '../shared/dom';
-import test from '../test.html';
+import config from './config';
+import Text from './text';
+import Selection from '../shared/selection';
+import { def } from '../shared/util';
+
+let editorId = 1; // 编辑器变化 多个编辑器自动累加
 
 const IEditor = class {
-  constructor() {
-    // console.log($(document.getElementById('ie')), 'dom getElementById');
-    // console.log($(document.querySelectorAll('div')), 'dom getElementById');
-    // console.log($(document.querySelectorAll('#ied')), 'dom getElementById');
-    // console.log($(document.querySelector('#ied')), 'dom getElementById');
-    console.log($('#ied'), 'dom #ied');
-    $('#ied').html(compiler(test, {
-      list: ['北京','上海'],
-      id: 1213,
-      name: '李梦龙',
-    }));
-    // console.time('sss')
-    // compiler(test, {
-    //   list: ['北京','上海'],
-    //   id: 1213,
-    //   name: '李梦龙',
-    // })
-    // compiler(test, {
-    //   list: ['北京','上海'],
-    //   id: 1213,
-    //   name: '李梦龙',
-    // })
-    // compiler(test, {
-    //   list: ['北京','上海'],
-    //   id: 1213,
-    //   name: '李梦龙',
-    // })
-    // console.timeEnd('sss')
+  constructor(selector) {
+    this.cfg = config;
+    def(this, '$editor', $(selector));
   }
 
-  // init() {
-  //   menu(this);
-  // }
+  init() {
+    def(this, 'uid', editorId++);
+    def(this, 'text', new Text(this));
+    def(this, 'selection', new Selection(this));
+  }
 }
 
 export default IEditor;

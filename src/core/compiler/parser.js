@@ -51,8 +51,8 @@ export const parseLoop = (htmlStr, option) => {
           option
         );
       }
-      return parseKey(htmlStr, option);
     }
+    return parseKey(htmlStr, option);
   } catch (e) {
     warn(e);
     return parseKey(htmlStr, option);

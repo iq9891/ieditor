@@ -8,7 +8,9 @@ import IEditor from '../src/core/ieditor';
 
 export default {
   mounted() {
-    new IEditor();
+    const edit = new IEditor(this.$refs.ied);
+    edit.init();
+    console.log(edit, 'IEditor');
   }
 };
 </script>

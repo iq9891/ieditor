@@ -23,13 +23,13 @@ import { getDomId } from './parsedom';
 // }
 const events = {};
 
-const XDom = class {
+const IDom = class {
   constructor(selector) {
     this.length = 0;
     return this.$init(selector);
   }
   /**
-   * XDom 初始化
+   * IDom 初始化
    *
    * @param {String} selector 要选择的元素或者要添加的元素
    * @private
@@ -57,14 +57,14 @@ const XDom = class {
     return this;
   }
   /**
-   * XDom 获取节点名字
+   * IDom 获取节点名字
    * @returns {string} 节点名字
    */
   getNodeName() {
-    return getValue('nodeName');
+    return this.getValue('nodeName');
   }
   /**
-   * XDom 是否包含某个子节点
+   * IDom 是否包含某个子节点
    * @param {String} $elem 检测的节点
    * @returns {string} 节点名字
    */
@@ -92,7 +92,7 @@ const XDom = class {
     return isUndefined(option) ? this[0][attr] : this[0][attr](option);
   }
   /**
-   * XDom 获取|设置 html
+   * IDom 获取|设置 html
    *
    * @param {String} html 要设置的 html
    * @private
@@ -104,7 +104,7 @@ const XDom = class {
     return isString(html) ? this.setValue('innerHTML', html) : this.getValue('innerHTML');
   }
   /**
-   * XDom 获取|设置 value
+   * IDom 获取|设置 value
    *
    * @param {String} value 要设置的 value
    * @returns {String} 内容
@@ -113,7 +113,7 @@ const XDom = class {
     return isUndefined(value) ? this.getValue('value') : this.setValue('value', value);
   }
   /**
-   * XDom 设置|获取样式
+   * IDom 设置|获取样式
    *
    * @param {String} params 如果是一位，那么就是获取某个属性
    * @param {Object} params 可以设置多个样式
@@ -141,7 +141,7 @@ const XDom = class {
     });
   }
   /**
-   * XDom 设置|获取属性
+   * IDom 设置|获取属性
    *
    * @param {String} params 如果是一位，那么就是获取某个属性
    * @returns {Object} XDOM 对象
@@ -150,7 +150,7 @@ const XDom = class {
     return isUndefined(value) ? this.getValue('getAttribute', params) : this.setValue('setAttribute', params, value);
   }
   /**
-   * XDom 删除属性
+   * IDom 删除属性
    *
    * @param {String} params 删除的属性
    * @returns {Object} XDOM 对象
@@ -159,7 +159,7 @@ const XDom = class {
     return this.getValue('removeAttribute', params);
   }
   /**
-   * XDom 添加 class
+   * IDom 添加 class
    *
    * @param {String} name 添加的 class
    * @returns {String} 内容
@@ -171,7 +171,7 @@ const XDom = class {
     return this.setValue('setAttribute', 'class', `${this.getValue('getAttribute', 'class')} ${name}`);
   }
   /**
-   * XDom 删除 class
+   * IDom 删除 class
    *
    * @param {String} name 添加的 class
    * @returns {String} 内容
@@ -188,22 +188,22 @@ const XDom = class {
   }
   //
   /**
-   * XDom 获取第几个元素
+   * IDom 获取第几个元素
    * @param {Number} index 索引
    * @returns {Object} XDOM 对象
    */
   eq(index) {
-    return new XDom(this[index >= this.length ? index % this.length : index]);
+    return new IDom(this[index >= this.length ? index % this.length : index]);
   }
   /**
-   * XDom 第一个
+   * IDom 第一个
    * @returns {Object} XDOM 对象
    */
   first() {
     return this.eq(0);
   }
   /**
-   * XDom 最后一个
+   * IDom 最后一个
    * @returns {Object} XDOM 对象
    */
   last() {
@@ -212,7 +212,7 @@ const XDom = class {
     return this.eq(now);
   }
   /**
-   * XDom 子节点
+   * IDom 子节点
    * @returns {Object} XDOM 对象
    */
   children(elem) {
@@ -238,10 +238,10 @@ const XDom = class {
         }
       });
     }
-    return new XDom(childs);
+    return new IDom(childs);
   }
   /**
-   * XDom 获取父节点
+   * IDom 获取父节点
    * @returns {Object} XDOM 对象
    */
   parent() {
@@ -253,10 +253,10 @@ const XDom = class {
         parents.push(parentNode);
       }
     });
-    return new XDom(parents);
+    return new IDom(parents);
   }
   /**
-   * XDom 索引
+   * IDom 索引
    * @returns {Number} 当前索引
    */
   index() {
@@ -271,7 +271,7 @@ const XDom = class {
   }
 
   /**
-   * XDom 绑定事件
+   * IDom 绑定事件
    * @param {string} type 事件类型
    * @param {string|function} selector 代理的选择器|绑定方法
    * @param {function} fn 绑定函数
@@ -326,7 +326,7 @@ $('div').on('click mouserover', () => {
     return this;
   }
   /**
-   * XDom 取消绑定事件
+   * IDom 取消绑定事件
    * @param {string} type 方法类型
    * @param {function} fn 绑定函数
    * @example
@@ -357,4 +357,4 @@ $('p').off(); // 取消所有绑定事件
   }
 };
 
-export default selector => new XDom(selector);
+export default selector => new IDom(selector);
