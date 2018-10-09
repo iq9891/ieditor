@@ -1,4 +1,4 @@
-import compiler from '../../compiler';
+import parser from '../../../shared/parser';
 import $ from '../../../shared/dom';
 import svgPath from '../../../shared/svgpath';
 import baseTem from './base.html';
@@ -17,7 +17,7 @@ const IBase = class {
   create() {
     const { cfg, type, editor } = this;
     const { lang, prefix } = cfg;
-    this.tem = compiler(baseTem, {
+    this.tem = parser(baseTem, {
       lang: lang[type],
       type,
       uid: editor.uid,

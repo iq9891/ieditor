@@ -1,4 +1,4 @@
-import compiler from '../compiler';
+import parser from '../../shared/parser';
 import $ from '../../shared/dom';
 import textTem from './text.html';
 
@@ -28,7 +28,7 @@ const IText = class {
   }
 
   render() {
-    this.$editor.html(compiler(
+    this.$editor.html(parser(
       textTem,
       {
         uid: this.uid,

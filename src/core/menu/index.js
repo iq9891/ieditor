@@ -1,4 +1,4 @@
-import compiler from '../compiler';
+import parser from '../../shared/parser';
 import $ from '../../shared/dom';
 import config from './common/config';
 import menuTem from './index.html';
@@ -22,7 +22,7 @@ const IMenu = class {
       editor,
       cfg,
     } = this;
-    $editor.html(compiler(menuTem, {
+    $editor.html(parser(menuTem, {
       uid: editor.uid,
       prefix: cfg.prefix,
     }) + $editor.html());

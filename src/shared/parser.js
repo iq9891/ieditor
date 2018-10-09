@@ -2,7 +2,7 @@ import {
   genReg,
   filterNoObjectKey,
   warn,
-} from '../../shared/helper';
+} from './helper';
 /**
  * 匹配某一个字符串，并替换对应字符串的值
  * @param {string} htmlStr 要匹配的内容
@@ -62,3 +62,5 @@ export const parseLoop = (htmlStr, option) => {
     return parseKey(htmlStr, option);
   }
 };
+
+export default (htmlStr, option) => parseLoop(htmlStr, option);
