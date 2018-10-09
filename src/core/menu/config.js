@@ -1,4 +1,4 @@
-import bold from '../list/bold';
+import bold from './list/bold';
 
 const config = {};
 

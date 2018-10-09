@@ -1,6 +1,6 @@
 import parser from '../../shared/parser';
 import $ from '../../shared/dom';
-import config from './common/config';
+import config from './config';
 import menuTem from './index.html';
 
 const IMenu = class {
