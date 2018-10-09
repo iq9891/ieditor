@@ -35,14 +35,14 @@ const IBase = class {
         return;
       }
       // 只有选中了才有效果
-      // insertHorizontalRule justifyLeft justifyCenter
-      // justifyRight justifyFull insertOrderedList insertUnorderedList
-      // undo redo removeFormat
+      // 'removeformat', 'bold', 'underline', 'italic', 'copy', 'cut', 'redo', 'undo'
+      // 'justifycenter', 'justifyfull', 'justifyleft', 'justifyright'
+      // 'inserthorizontalrule', 'insertorderedlist', 'insertunorderedlist'
       if (!selection.isSelectionEmpty() || !this.selected) {
-        // bold italic underline subscript superscript
-        // 加粗操作
+        // 操作编辑器内容
         selection.handle(type);
-        this.isActive();
+        // 整体检测按钮状态
+        editor.menu.testActive();
       }
     });
   }
