@@ -39,15 +39,12 @@ const nativeBind = (fn, ctx) => fn.bind(ctx);
 const polyfillBind = (fn, ctx) => {
   const boundFn = (...args) => {
     const argLength = args.length;
-    return argLength
-      ? argLength > 1
-        ? fn.apply(ctx, args)
-        : fn.call(ctx, a)
-      : fn.call(ctx);
-  }
+    const argLengthYes = argLength > 1 ? fn.apply(ctx, args) : fn.call(ctx, args[0]);
+    return argLength ? argLengthYes : fn.call(ctx);
+  };
   boundFn.$length = fn.length;
   return boundFn;
-}
+};
 export const bind = Function.prototype.bind ? nativeBind : polyfillBind;
 /**
  * 循环的封装
@@ -56,7 +53,7 @@ export const bind = Function.prototype.bind ? nativeBind : polyfillBind;
  */
 export const forEach = (obj, fn) => {
   const len = obj.length;
-  for (let i = 0, len = obj.length; i < len; i++) {
+  for (let i = 0; i < len; i++) {
     const elem = obj[i];
     const result = fn.call(elem, elem, i);
     if (result === false) {
@@ -69,23 +66,23 @@ export const forEach = (obj, fn) => {
  * 对象提取键值的封装
  * @param {object} obj 提取的对象
  */
- export const keys = obj => Object.keys(obj);
+export const keys = obj => Object.keys(obj);
 
- /**
+/**
   * 定义一个属性
   * @param {object} obj 定义属性的对象
   * @param {string} key 定义的属性
   * @param {any} val 定义属性的值
   */
- export const def = (obj, key, val) => {
-   Object.defineProperty(obj, key, {
-     value: val,
-   });
- };
- /**
+export const def = (obj, key, val) => {
+  Object.defineProperty(obj, key, {
+    value: val,
+  });
+};
+/**
   * 查找对象上是否有属性
   * @param {object} obj 定义属性的对象
   * @param {string} key 定义的属性
   */
- const hasOwnProperty = Object.prototype.hasOwnProperty;
- export const hasOwn = (obj, key) => hasOwnProperty.call(obj, key);
+const hasOwnProper = Object.prototype.hasOwnProperty;
+export const hasOwn = (obj, key) => hasOwnProper.call(obj, key);

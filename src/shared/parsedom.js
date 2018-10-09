@@ -1,6 +1,6 @@
-const nodeNameToLowerCase = ele => ele.nodeName.toLowerCase();
+export const nodeNameToLowerCase = ele => ele.nodeName.toLowerCase();
 
-const getElementTree = element => {
+export const getElementTree = (element) => {
   const aPaths = [];
   /* eslint-disable no-param-reassign */
   for (; element && element.nodeType === 1 && element.nodeName !== 'BODY'; element = element.parentNode) {
@@ -19,9 +19,9 @@ const getElementTree = element => {
     aPaths.push(`${nodeNameToLowerCase(element)}[${iIndex}]`);
   }
   return aPaths;
-} // end getElementTree
+}; // end getElementTree
 
-export const getDomId = element => {
+export const getDomId = (element) => {
   let id = '/body[0]';
   const aDomTree = getElementTree(element);
   for (let i = aDomTree.length - 1; i >= 0; i--) {

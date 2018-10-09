@@ -9,7 +9,7 @@ export const genReg = (key, flags = '') => new RegExp(`{{\\s?(${key})\\s?}}`, fl
 /**
  * 筛选键值对非对象的值
  */
-export const filterNoObjectKey = obj => {
+export const filterNoObjectKey = (obj) => {
   const objIsArray = isArray(obj);
   const newObj = objIsArray ? obj : Object.keys(obj);
   return newObj.filter(key => !isPlainObject(objIsArray ? key : obj[key]));
@@ -17,8 +17,8 @@ export const filterNoObjectKey = obj => {
 /**
  * 温馨提示
  */
- export const warn = msg => {
-   if (process.env.NODE_ENV !== 'production') {
-     console.error(`[ieditor]: ${msg}`);
-   }
- };
+export const warn = (msg) => {
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(`[ieditor]: ${msg}`);
+  }
+};

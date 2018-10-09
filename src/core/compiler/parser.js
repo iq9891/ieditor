@@ -20,7 +20,7 @@ export const parseKey = (htmlStr, option) => {
         const result = htmlStr.match(genReg(replaceKey));
         if (result && result.length > 1) {
           // 过滤值为对象的
-          let newHtml = replaceList.reduce((newTem, optKey) => newTem.replace(genReg(optKey, 'g'), option[optKey]), htmlStr);
+          const newHtml = replaceList.reduce((newTem, optKey) => newTem.replace(genReg(optKey, 'g'), option[optKey]), htmlStr);
           return newHtml;
         }
         return htmlStr;
@@ -31,13 +31,12 @@ export const parseKey = (htmlStr, option) => {
     warn(e);
     return htmlStr;
   }
-}
+};
 
 export const parseLoop = (htmlStr, option) => {
   const reXfor = /{{\s?x-for="(.*)"\s?}}\s+(.*){{\s?\/x-for\s?}}\s+/;
   try {
     // 过滤模板中不存在的变量
-    const replaceList = Object.keys(option).filter(attr => !!htmlStr.match(genReg(attr)));
     const result = htmlStr.match(reXfor);
     if (result && result.length > 1) {
       const keyword = result[1].split(' ');
@@ -46,11 +45,16 @@ export const parseLoop = (htmlStr, option) => {
       // 如果是 'XX in XX'
       if (keyword.length > 1 && optHasKey) {
         const reKey = genReg(keyword[0]);
-        return parseKey(
-          option[keyword[2]].reduce((newTem, value) => newTem + result[2].replace(reKey, value), ''),
-          option
+        const loopStr = parseKey(
+          option[keyword[2]].reduce((newTem, value) => newTem + result[2].replace(reKey, `"${value}"`), ''),
+          option,
+        );
+        return parseLoop(
+          htmlStr.replace(new RegExp(result[0]), loopStr),
+          option,
         );
       }
+      return parseKey(htmlStr, option);
     }
     return parseKey(htmlStr, option);
   } catch (e) {

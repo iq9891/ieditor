@@ -1,13 +1,12 @@
 import {
-  isArray,
-  isNodeArray,
   isString,
-  bind,
   forEach,
   isUndefined,
   keys,
 } from './util';
 import { warn } from './helper';
+import getStyle from './getStyle';
+import px from './px';
 import {
   delEvt,
   addEvt,
@@ -79,7 +78,7 @@ const IDom = class {
   }
   // 循环设置某属性的值
   setValue(attr, value, option) {
-    return forEach(this, elem => {
+    return forEach(this, (elem) => {
       if (isUndefined(option)) {
         elem[attr] = value;
       } else {
@@ -180,7 +179,7 @@ const IDom = class {
     if (!name) {
       return this;
     }
-    return forEach(this, elem => {
+    return forEach(this, (elem) => {
       const { className } = elem;
       const rName = new RegExp(`\\s${name}|${name}\\s|${name}`);
       elem.className = className.replace(rName, '');
@@ -218,13 +217,13 @@ const IDom = class {
   children(elem) {
     const childs = [];
     if (elem) {
-      forEach(elem, el => {
+      forEach(elem, (el) => {
         if (el.firstChild) {
           childs.push(el.firstChild);
         }
       });
     } else {
-      forEach(this, el => {
+      forEach(this, (el) => {
         const { children } = el;
         if (children.length) {
           forEach(keys(children), (elChild) => {
@@ -312,8 +311,8 @@ $('div').on('click mouserover', () => {
                 if (target.matches(selector)) {
                   fn.call(target, e);
                 }
-              } catch (e) {
-                warn(e)
+              } catch (err) {
+                warn(err);
               }
             };
             events[getDomId(el)][tp].push(agentFn);

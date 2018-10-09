@@ -137,6 +137,21 @@ const ISelection = class {
       range.pasteHTML(html);
     }
   }
+  /**
+  * 按钮对文字的操作，如加粗。。
+  * @param {String} name 操作的类型，name 的类型可以参照 https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand
+  * @param {String} value 操作对应的值
+  */
+  handle(name, value) {
+    if (this[name]) {
+      this[name]();
+    } else {
+      document.execCommand(name, false, value);
+      // 可以多次操作
+      this.saveRange();
+      this.restoreSelection();
+    }
+  }
 };
 
 export default ISelection;

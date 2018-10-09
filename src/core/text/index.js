@@ -10,19 +10,21 @@ const IText = class {
     this.prefix = editor.cfg.prefix;
     // 初始化内容
     this.init();
-    // 绑定事件
-    this.bind();
   }
 
   init() {
     const contents = this.getChilds();
     // 渲染
     this.render();
-
-    this.$text = $(`#${this.prefix}text${this.uid}`);
-    this.$wrap = $(`#${this.prefix}wrap${this.uid}`);
-    // 修复之前的内容
-    this.setHtml(contents.length > 0 ? contents : '<p>这里是内容</p>');
+    // 因为在 虚拟 DOM 的框架中会获取不到元素添加不了事件
+    setTimeout(() => {
+      this.$text = $(`#${this.prefix}text${this.uid}`);
+      this.$wrap = $(`#${this.prefix}wrap${this.uid}`);
+      // 绑定事件
+      this.bind();
+      // 修复之前的内容
+      this.setHtml(contents.length > 0 ? contents : '<p>这里是内容</p>');
+    }, 3);
   }
 
   render() {
@@ -56,7 +58,7 @@ const IText = class {
       // 随时保存选区
       selection.saveRange();
       // 更新按钮 ative 状态
-      // menu.testActive();
+      menu.testActive();
     };
     // 按键后保存
     $textElem.on('keyup', saveRange);
@@ -131,7 +133,6 @@ const IText = class {
   * 新建选区，移动光标到最后
   */
   cursorEnd() {
-    const { editor } = this;
     const $last = this.$text.children().last();
     let range = null;
     if (window.getSelection) {
@@ -147,6 +148,6 @@ const IText = class {
       range.select();
     }
   }
-}
+};
 
 export default IText;

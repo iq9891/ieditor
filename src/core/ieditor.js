@@ -1,6 +1,7 @@
 import $ from '../shared/dom';
 import config from './config';
 import Text from './text';
+import Menu from './menu';
 import Selection from '../shared/selection';
 import { def } from '../shared/util';
 
@@ -16,7 +17,8 @@ const IEditor = class {
     def(this, 'uid', editorId++);
     def(this, 'text', new Text(this));
     def(this, 'selection', new Selection(this));
+    def(this, 'menu', new Menu(this));
   }
-}
+};
 
 export default IEditor;
