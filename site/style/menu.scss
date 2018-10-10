@@ -1,0 +1,20 @@
+.#{$prefix}menu {
+  display: flex;
+  border: 1px solid $border-color;
+  background: $menu-color;
+  flex-flow: row wrap;
+
+  &-link {
+    display: flex;
+    margin: 8px;
+    // 菜单 icon 鼠标经过，菜单操作效果
+    @each $icon in $icons {
+      &:active .#{$prefix}icon-#{$icon},
+      &:hover .#{$prefix}icon-#{$icon},
+      &-active .#{$prefix}icon-#{$icon},
+      &-active:hover .#{$prefix}icon-#{$icon} {
+        background-image: url(icon/#{$icon}-on.svg);
+      }
+    }
+  }
+}

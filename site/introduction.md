@@ -16,5 +16,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../src/style/ieditor.scss';
+// IEditor 样式
+@import './style/ieditor.scss';
 </style>
