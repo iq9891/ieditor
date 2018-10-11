@@ -1,3 +1,4 @@
+import getStyle from 'shared/getStyle';
 import {
   isString,
   forEach,
@@ -5,7 +6,6 @@ import {
   keys,
 } from './util';
 import { warn } from './helper';
-import getStyle from './getStyle';
 import px from './px';
 import {
   delEvt,
@@ -27,6 +27,7 @@ const IDom = class {
     this.length = 0;
     return this.$init(selector);
   }
+
   /**
    * IDom 初始化
    *
@@ -55,6 +56,7 @@ const IDom = class {
     });
     return this;
   }
+
   /**
    * IDom 获取节点名字
    * @returns {string} 节点名字
@@ -62,6 +64,7 @@ const IDom = class {
   getNodeName() {
     return this.getValue('nodeName');
   }
+
   /**
    * IDom 是否包含某个子节点
    * @param {String} $elem 检测的节点
@@ -70,12 +73,14 @@ const IDom = class {
   isContain($elem) {
     return this[0].contains($elem[0]);
   }
+
   // 类数组，forEach
   forEach(fn) {
     return forEach(this, (el, elIndex) => {
       fn.call(el, el, elIndex);
     });
   }
+
   // 循环设置某属性的值
   setValue(attr, value, option) {
     return forEach(this, (elem) => {
@@ -86,10 +91,12 @@ const IDom = class {
       }
     });
   }
+
   // 获取对象第一个某属性的值
   getValue(attr, option) {
     return isUndefined(option) ? this[0][attr] : this[0][attr](option);
   }
+
   /**
    * IDom 获取|设置 html
    *
@@ -102,6 +109,7 @@ const IDom = class {
   html(html) {
     return isString(html) ? this.setValue('innerHTML', html) : this.getValue('innerHTML');
   }
+
   /**
    * IDom 获取|设置 value
    *
@@ -111,6 +119,7 @@ const IDom = class {
   val(value) {
     return isUndefined(value) ? this.getValue('value') : this.setValue('value', value);
   }
+
   /**
    * IDom 设置|获取样式
    *
@@ -139,6 +148,7 @@ const IDom = class {
       });
     });
   }
+
   /**
    * IDom 设置|获取属性
    *
@@ -148,6 +158,7 @@ const IDom = class {
   attr(params, value) {
     return isUndefined(value) ? this.getValue('getAttribute', params) : this.setValue('setAttribute', params, value);
   }
+
   /**
    * IDom 删除属性
    *
@@ -157,6 +168,7 @@ const IDom = class {
   removeAttr(params) {
     return this.getValue('removeAttribute', params);
   }
+
   /**
    * IDom 添加 class
    *
@@ -169,6 +181,7 @@ const IDom = class {
     }
     return this.setValue('setAttribute', 'class', `${this.getValue('getAttribute', 'class')} ${name}`);
   }
+
   /**
    * IDom 删除 class
    *
@@ -185,6 +198,7 @@ const IDom = class {
       elem.className = className.replace(rName, '');
     });
   }
+
   //
   /**
    * IDom 获取第几个元素
@@ -194,6 +208,7 @@ const IDom = class {
   eq(index) {
     return new IDom(this[index >= this.length ? index % this.length : index]);
   }
+
   /**
    * IDom 第一个
    * @returns {Object} XDOM 对象
@@ -201,6 +216,7 @@ const IDom = class {
   first() {
     return this.eq(0);
   }
+
   /**
    * IDom 最后一个
    * @returns {Object} XDOM 对象
@@ -210,6 +226,7 @@ const IDom = class {
     const now = length - 1 > -1 ? length - 1 : 0;
     return this.eq(now);
   }
+
   /**
    * IDom 子节点
    * @returns {Object} XDOM 对象
@@ -239,6 +256,7 @@ const IDom = class {
     }
     return new IDom(childs);
   }
+
   /**
    * IDom 获取父节点
    * @returns {Object} XDOM 对象
@@ -254,6 +272,7 @@ const IDom = class {
     });
     return new IDom(parents);
   }
+
   /**
    * IDom 索引
    * @returns {Number} 当前索引
@@ -324,6 +343,7 @@ $('div').on('click mouserover', () => {
     }
     return this;
   }
+
   /**
    * IDom 取消绑定事件
    * @param {string} type 方法类型

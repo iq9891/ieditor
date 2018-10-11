@@ -1,4 +1,8 @@
-const base = process.env.GH ? '/ieditor/' : '/'
+const path = require('path');
+
+const resolve = p => path.resolve(__dirname, '../../', p);
+
+const base = process.env.GH ? '/ieditor/' : '/';
 
 module.exports = {
   title: 'IEditor',
@@ -20,6 +24,13 @@ module.exports = {
         }],
       }],
     },
+    resolve: {
+      alias: {
+        text: resolve('src/core/text'),
+        menu: resolve('src/core/menu'),
+        shared: resolve('src/shared'),
+      }
+    }
   },
   themeConfig: {
     repo: 'iq9891/ieditor',

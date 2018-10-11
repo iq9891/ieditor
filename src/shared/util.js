@@ -67,7 +67,6 @@ export const forEach = (obj, fn) => {
  * @param {object} obj 提取的对象
  */
 export const keys = obj => Object.keys(obj);
-
 /**
   * 定义一个属性
   * @param {object} obj 定义属性的对象

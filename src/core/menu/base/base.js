@@ -1,5 +1,5 @@
-import parser from '../../../shared/parser';
-import $ from '../../../shared/dom';
+import parser from 'shared/parser';
+import $ from 'shared/dom';
 import baseTem from './base.html';
 
 const IBase = class {
@@ -44,6 +44,7 @@ const IBase = class {
       }
     });
   }
+
   // 是否是选中
   // 是否是选中
   isActive() {

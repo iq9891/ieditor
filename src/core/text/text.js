@@ -1,5 +1,5 @@
-import parser from '../../shared/parser';
-import $ from '../../shared/dom';
+import parser from 'shared/parser';
+import $ from 'shared/dom';
 import textTem from './text.html';
 
 const IText = class {
@@ -36,6 +36,7 @@ const IText = class {
       },
     ));
   }
+
   // 绑定事件
   bind() {
     // 实时保存选取
@@ -45,6 +46,7 @@ const IText = class {
     // 清空之后
     this.empty();
   }
+
   // 实时保存选取
   saveRangeRealTime() {
     const $textElem = this.$text;
@@ -72,6 +74,7 @@ const IText = class {
       $textElem.off('mouseleave', saveRange);
     });
   }
+
   // 处理 tab 键
   tab() {
     this.$text.on('keydown', (e = window.event) => {
@@ -99,6 +102,7 @@ const IText = class {
       e.preventDefault();
     });
   }
+
   // 清空之后
   empty() {
     this.$text.on('keydown', (e = window.event) => {
@@ -112,12 +116,14 @@ const IText = class {
       }
     });
   }
+
   // 获取之前里面内容
   getChilds() {
     const children = this.$editor.html();
     this.$editor.html('');
     return children;
   }
+
   /**
   * 设置内容
   * @param {String} html 内容

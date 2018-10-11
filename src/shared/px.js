@@ -4,9 +4,9 @@
  * @param {Object} value 处理的字符串
  * @private
  * @example
- console.log(px(1)); // 1px
- console.log(px('1')); // 1px
-console.log(px('#666')); // '#fff'
+   console.log(px(1)); // 1px
+   console.log(px('1')); // 1px
+   console.log(px('#666')); // '#fff'
  * @returns {string} value 新字符串
  */
 function px(value) {

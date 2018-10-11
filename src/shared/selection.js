@@ -9,12 +9,14 @@ const ISelection = class {
     this.cfg = editor.cfg;
     this.curRange = null;
   }
+
   /**
   * 获取 range 对象
   */
   getRange() {
     return this.curRange;
   }
+
   /**
   * 选区的 $Elem
   * @param {Object} rg 当前选区
@@ -28,6 +30,7 @@ const ISelection = class {
     }
     return null;
   }
+
   /**
   * 保存选区
   * @param {Object} rg 当前选区
@@ -55,6 +58,7 @@ const ISelection = class {
       this.curRange = range;
     }
   }
+
   /**
   * 根据 $Elem 设置选区
   * @param {Object} $elem XDom 对象元素
@@ -81,6 +85,7 @@ const ISelection = class {
     // 存储 range
     this.saveRange(range);
   }
+
   // 选区是否为空
   isSelectionEmpty() {
     const range = this.curRange;
@@ -93,6 +98,7 @@ const ISelection = class {
     }
     return false;
   }
+
   /**
   * 恢复选区
   */
@@ -111,6 +117,7 @@ const ISelection = class {
       selection.addRange(this.curRange);
     }
   }
+
   /**
   * 获取选中的内容
   * @return {String} 选中的内容
@@ -119,6 +126,7 @@ const ISelection = class {
     const range = this.curRange;
     return range ? range.toString() : '';
   }
+
   /**
   * 自定义 insertHTML 事件
   * @param {String} html 添加的内容
@@ -137,6 +145,7 @@ const ISelection = class {
       range.pasteHTML(html);
     }
   }
+
   /**
   * 按钮对文字的操作，如加粗。。
   * @param {String} name 操作的类型，name 的类型可以参照 https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand

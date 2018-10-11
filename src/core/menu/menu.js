@@ -1,5 +1,5 @@
-import parser from '../../shared/parser';
-import $ from '../../shared/dom';
+import parser from 'shared/parser';
+import $ from 'shared/dom';
 import config from './config';
 import menuTem from './index.html';
 
@@ -16,6 +16,7 @@ const IMenu = class {
     //根据配置渲染创建功能按钮
     this.renderBtns();
   }
+
   createMenu() {
     const {
       $editor,
@@ -27,6 +28,7 @@ const IMenu = class {
       prefix: cfg.prefix,
     }) + $editor.html());
   }
+
   // 根据配置渲染创建功能按钮
   renderBtns() {
     let tems = '';
@@ -41,6 +43,7 @@ const IMenu = class {
       btn.bind();
     });
   }
+
   // 删除
   remove() {
     const {
@@ -49,6 +52,7 @@ const IMenu = class {
     } = this.editor;
     $(`#${cfg.prefix}dialog${uid}`).remove();
   }
+
   // 检测哪个是激活
   testActive() {
     this.btns.forEach((btn) => {
