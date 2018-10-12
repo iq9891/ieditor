@@ -8,7 +8,13 @@ import IEditor from '../src/core/ieditor';
 
 export default {
   mounted() {
-    const edit = new IEditor(this.$refs.ied);
+    // const edit = new IEditor(this.$refs.ied);
+
+    const edit = new IEditor({
+      el: this.$refs.ied,
+      diy: 'menu',
+    });
+
     edit.init();
     console.log(edit, 'IEditor');
   }

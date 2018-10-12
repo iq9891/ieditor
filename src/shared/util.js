@@ -19,6 +19,12 @@ export const isArray = arr => xToString.call(arr) === '[object Array]';
 */
 export const isNodeArray = arr => xToString.call(arr) === '[object NodeList]';
 /**
+ * HTML 的 DOM 类型检查。仅对纯JavaScript对象返回true
+ * @param {any} arr 检查的模板
+ * @return {boolean} 是否是 节点数组
+*/
+export const isHtmlArray = arr => (xToString.call(arr)).indexOf('HTML') > 0;
+/**
  * 判断是否是字符串
  * @param {any} str 检查的字符串
  * @return {boolean} 是否是 字符串

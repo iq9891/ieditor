@@ -2,15 +2,29 @@ import $ from 'shared/dom';
 import Text from 'text/text';
 import Menu from 'menu/menu';
 import Selection from 'shared/selection';
-import { def } from 'shared/util';
+import {
+  def,
+  isHtmlArray,
+  isPlainObject,
+  hasOwn,
+} from 'shared/util';
 import config from './config';
 
 let editorId = 1; // 编辑器变化 多个编辑器自动累加
 
 const IEditor = class {
-  constructor(selector) {
+  constructor(options) {
     this.cfg = config;
-    def(this, '$editor', $(selector));
+    let elem = '';
+    if (isHtmlArray(options)) {
+      elem = options;
+    } else if (
+      isPlainObject(options) &&
+      hasOwn(options, 'el')
+    ) {
+      elem = options.el;
+    }
+    def(this, '$editor', $(elem));
   }
 
   init() {
