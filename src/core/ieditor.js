@@ -6,37 +6,24 @@ import {
   def,
   isHtmlArray,
   isPlainObject,
-  hasOwn,
+  resolveOptions,
 } from 'shared/util';
-import config from './config';
+import defultConfig from './config';
 
 let editorId = 1; // 编辑器变化 多个编辑器自动累加
 
 const IEditor = class {
   constructor(options) {
-    this.cfg = config;
-    const configElem = config.el;
-    let elem = configElem.indexOf('#') > -1 ? configElem : `#${configElem}`;
-    this.diy = Object.create(null);
-
+    this.cfg = defultConfig;
+    let elem = '';
     if (isHtmlArray(options)) {
       elem = options;
-    } else if (
-      isPlainObject(options)
-    ) {
-      // 如果有 el 属性
-      if (hasOwn(options, 'el')) {
-        elem = options.el;
-      }
-      // 如果定制化
-      if (
-        isPlainObject(options)
-        && hasOwn(options, 'diy')
-      ) {
-        this.diy = options.diy;
-      }
+    } else if (isPlainObject(options)) {
+      // 处理数据
+      this.cfg = resolveOptions(defultConfig, options);
+      const configElem = this.cfg.el;
+      elem = isHtmlArray(configElem) || configElem.indexOf('#') > -1 ? configElem : `#${configElem}`;
     }
-
     def(this, '$editor', $(elem));
   }
 

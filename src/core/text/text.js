@@ -1,5 +1,8 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
+import {
+  hasOwn,
+} from 'shared/util';
 import textTem from './text.html';
 
 const IText = class {
@@ -13,18 +16,20 @@ const IText = class {
   }
 
   init() {
-    const contents = this.getChilds();
+    const configDiy = this.editor.cfg.diy;
+    const isDiyText = !hasOwn(configDiy, 'text') || (hasOwn(configDiy, 'text') && !configDiy.text);
     // 渲染
-    this.render();
-    // 因为在 虚拟 DOM 的框架中会获取不到元素添加不了事件
-    setTimeout(() => {
-      this.$text = $(`#${this.prefix}text${this.uid}`);
-      this.$wrap = $(`#${this.prefix}wrap${this.uid}`);
-      // 绑定事件
-      this.bind();
-      // 修复之前的内容
-      this.setHtml(contents.length > 0 ? contents : '<p>这里是内容</p>');
-    }, 3);
+    if (isDiyText) {
+      this.render();
+      // 因为在 虚拟 DOM 的框架中会获取不到元素添加不了事件
+      setTimeout(() => {
+        this.$text = $(`#${this.prefix}text${this.uid}`);
+        this.afterInit();
+      }, 3);
+    } else {
+      this.$text = $(configDiy.text);
+      this.afterInit();
+    }
   }
 
   render() {
@@ -35,6 +40,14 @@ const IText = class {
         prefix: this.prefix,
       },
     ));
+  }
+
+  afterInit() {
+    const contents = this.getChilds();
+    // 绑定事件
+    this.bind();
+    // 修复之前的内容
+    this.setHtml(contents.length > 0 ? contents : '<p>这里是内容</p>');
   }
 
   // 绑定事件

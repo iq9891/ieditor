@@ -11,17 +11,15 @@ const IMenu = class {
     this.editor = editor;
     this.$editor = editor.$editor;
     this.cfg = editor.cfg;
-    const {
-      diy,
-    } = this.editor;
+    const configDiy = this.cfg.diy;
     // 当前菜单的状态, 用于图片那里
     this.status = '';
     this.btns = [];
     this.clicks = {};
     // 初始化菜单
     if (
-      !hasOwn(diy, 'menu')
-      || (hasOwn(diy, 'menu') && !diy.menu)
+      !hasOwn(configDiy, 'menu')
+      || (hasOwn(configDiy, 'menu') && !configDiy.menu)
     ) {
       this.createMenu();
     }

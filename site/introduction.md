@@ -1,13 +1,14 @@
 # 简单使用
 > Vue.js 2.x 示例
 
-<div id="ied" class="ied" ref="ied"></div>
+<!-- <div id="ied" class="ied" ref="ied"></div> -->
 
-<p>
-<button @click="boldFn">加粗</button>
-</p>
-
-<div ref="text" contenteditable="true" class="diy-text"></div>
+<div>
+  <p>
+    <button @click="boldFn">加粗</button>
+  </p>
+  <div ref="text" contenteditable="true" class="diy-text"></div>
+</div>
 
 <script>
 import IEditor from '../src/core/ieditor';
@@ -15,11 +16,11 @@ import IEditor from '../src/core/ieditor';
 export default {
   mounted() {
     // const edit = new IEditor(this.$refs.ied);
-
     this.edit = new IEditor({
       // el: this.$refs.ied,
       diy: {
         menu: true,
+        text: this.$refs.text,
       },
     });
 

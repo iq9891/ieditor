@@ -88,6 +88,53 @@ export const def = (obj, key, val) => {
   * 查找对象上是否有属性
   * @param {object} obj 定义属性的对象
   * @param {string} key 定义的属性
+  * @return {booleam} 是否有属性
   */
 const hasOwnProper = Object.prototype.hasOwnProperty;
 export const hasOwn = (obj, key) => hasOwnProper.call(obj, key);
+/**
+ * 复制对象
+ * @param {object} obj 定义属性的对象
+ * @return {object} 新的对象
+ */
+const copyObject = (obj) => {
+  if (!isPlainObject(obj)) {
+    return obj;
+  }
+  return JSON.parse(JSON.stringify(obj));
+};
+/**
+ * 解析选项
+ * @param {object} oldOptions 旧对象
+ * @param {object} newOptions 新对象
+ * @return {object} 新的对象
+*/
+export const resolveOptions = (oldOptions, newOptions) => {
+  const newOpt = copyObject(oldOptions);
+  const oldOptionsKeys = keys(oldOptions);
+  // 如果不是 JSON 对象
+  if (!isPlainObject(newOptions)) {
+    return newOpt;
+  }
+
+  keys(newOptions).forEach((newKey) => {
+    // 如果旧的配置里有
+    if (oldOptionsKeys.includes(newKey)) {
+      const nOptItem = newOptions[newKey];
+      // 如果是 JSON
+      if (isPlainObject(nOptItem)) {
+        const options = {};
+        keys(nOptItem).forEach((nOptItemKey) => {
+          const nOptChild = nOptItem[nOptItemKey];
+          options[nOptItemKey] = isHtmlArray(nOptChild) ? nOptChild : copyObject(nOptChild);
+        });
+        newOpt[newKey] = options;
+      } else if (Array.isArray(nOptItem)) {
+        newOpt[newKey] = nOptItem.slice();
+      } else {
+        newOpt[newKey] = nOptItem;
+      }
+    }
+  });
+  return newOpt;
+};
