@@ -19,8 +19,8 @@ const IEditor = class {
     if (isHtmlArray(options)) {
       elem = options;
     } else if (
-      isPlainObject(options) &&
-      hasOwn(options, 'el')
+      isPlainObject(options)
+      && hasOwn(options, 'el')
     ) {
       elem = options.el;
     }
