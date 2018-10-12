@@ -71,7 +71,10 @@ const IDom = class {
    * @returns {string} 节点名字
    */
   isContain($elem) {
-    return this[0].contains($elem[0]);
+    if (this.length && $elem.length) {
+      return this[0].contains($elem[0]);
+    }
+    return this;
   }
 
   // 类数组，forEach
@@ -94,7 +97,10 @@ const IDom = class {
 
   // 获取对象第一个某属性的值
   getValue(attr, option) {
-    return isUndefined(option) ? this[0][attr] : this[0][attr](option);
+    if (this.length) {
+      return isUndefined(option) ? this[0][attr] : this[0][attr](option);
+    }
+    return this;
   }
 
   /**
@@ -140,7 +146,10 @@ const IDom = class {
           elem.style[params] = params === 'zIndex' ? value : px(value);
         });
       }
-      return getStyle(this[0])[params];
+      if (this.length) {
+        return getStyle(this[0])[params];
+      }
+      return this;
     }
     return forEach(this, (elem) => {
       forEach(keys(params), (paramsKey) => {
@@ -281,7 +290,7 @@ const IDom = class {
     const nowElParent = this.parent().children();
     let now = 0;
     forEach(nowElParent, (npNode, npNodeIndex) => {
-      if (npNode.isEqualNode(this[0])) {
+      if (this.length && npNode.isEqualNode(this[0])) {
         now = npNodeIndex;
       }
     });

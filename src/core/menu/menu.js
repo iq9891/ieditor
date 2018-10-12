@@ -1,5 +1,8 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
+import {
+  hasOwn,
+} from 'shared/util';
 import config from './config';
 import menuTem from './index.html';
 
@@ -8,11 +11,20 @@ const IMenu = class {
     this.editor = editor;
     this.$editor = editor.$editor;
     this.cfg = editor.cfg;
+    const {
+      diy,
+    } = this.editor;
     // 当前菜单的状态, 用于图片那里
     this.status = '';
     this.btns = [];
+    this.clicks = {};
     // 初始化菜单
-    this.createMenu();
+    if (
+      !hasOwn(diy, 'menu')
+      || (hasOwn(diy, 'menu') && !diy.menu)
+    ) {
+      this.createMenu();
+    }
     //根据配置渲染创建功能按钮
     this.renderBtns();
   }
@@ -32,10 +44,11 @@ const IMenu = class {
   // 根据配置渲染创建功能按钮
   renderBtns() {
     let tems = '';
-    this.cfg.menus.forEach((menu) => {
-      const menuBtn = new config[menu](this.editor);
+    this.cfg.menus.forEach((menuType) => {
+      const menuBtn = new config[menuType](this.editor);
       tems += menuBtn.tem;
       this.btns.push(menuBtn);
+      this.clicks[menuType] = menuBtn.click.bind(this, menuType);
     });
     $(`#${this.cfg.prefix}menu${this.editor.uid}`).html(tems);
 

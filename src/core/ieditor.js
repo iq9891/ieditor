@@ -15,15 +15,28 @@ let editorId = 1; // 编辑器变化 多个编辑器自动累加
 const IEditor = class {
   constructor(options) {
     this.cfg = config;
-    let elem = '';
+    const configElem = config.el;
+    let elem = configElem.indexOf('#') > -1 ? configElem : `#${configElem}`;
+    this.diy = Object.create(null);
+
     if (isHtmlArray(options)) {
       elem = options;
     } else if (
       isPlainObject(options)
-      && hasOwn(options, 'el')
     ) {
-      elem = options.el;
+      // 如果有 el 属性
+      if (hasOwn(options, 'el')) {
+        elem = options.el;
+      }
+      // 如果定制化
+      if (
+        isPlainObject(options)
+        && hasOwn(options, 'diy')
+      ) {
+        this.diy = options.diy;
+      }
     }
+
     def(this, '$editor', $(elem));
   }
 

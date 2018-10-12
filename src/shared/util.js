@@ -23,7 +23,7 @@ export const isNodeArray = arr => xToString.call(arr) === '[object NodeList]';
  * @param {any} arr 检查的模板
  * @return {boolean} 是否是 节点数组
 */
-export const isHtmlArray = arr => (xToString.call(arr)).indexOf('HTML') > 0;
+export const isHtmlArray = arr => (xToString.call(arr)).indexOf('HTML') > -1;
 /**
  * 判断是否是字符串
  * @param {any} str 检查的字符串
