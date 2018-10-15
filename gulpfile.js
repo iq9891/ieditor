@@ -3,9 +3,9 @@ const sass = require('gulp-sass');
 const rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css');
 const postcss = require('gulp-postcss');
-const gulp = require('gulp');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
+const imagemin = require('gulp-imagemin');
 
 const pkg = require('./package.json');
 const pkgName = pkg.name.split('/');
@@ -15,6 +15,12 @@ const paths = {
   src: 'site/style/'+ name +'.scss',
   dest: 'dist/'
 };
+
+function imageMin() {
+  return gulp.src('site/icon/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest(paths.dest + '/icon'));
+}
 
 function styles() {
   const plugins = [
@@ -33,6 +39,6 @@ function styles() {
     .pipe(gulp.dest(paths.dest));
 }
 
-exports.styles = styles;
+var build = gulp.series(gulp.parallel(styles, imageMin));
 
-gulp.task('default', styles);
+gulp.task('default', build);
