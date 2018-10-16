@@ -148,7 +148,12 @@ const IDom = class {
       }
       if (this.length) {
         if (params === 'line-height') {
-          return String(delPx(getStyle(this[0])[params]) / delPx(getStyle(this[0])['font-size']));
+          const lineHeight = delPx(getStyle(this[0])[params]);
+          const fontSize = delPx(getStyle(this[0])['font-size']);
+          if (lineHeight === 'normal') {
+            return '';
+          }
+          return String(lineHeight / fontSize);
         }
         return getStyle(this[0])[params];
       }
