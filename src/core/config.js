@@ -15,14 +15,42 @@ export default {
   diy: {},
   // 菜单配置
   menus: [
-    'bold', // 加粗
+    'undo', // 撤销
+    'redo', // 重做
     'fontfamily', // 字体
     'fontsize', // 字号
     'lineheight', // 行高
+    'inserthorizontalrule', // 插入水平线
+    'removeformat', // 清除样式
+    'bold', // 加粗
+    'italic', // 倾斜
+    'underline', // 下划线
+    'copy', // 复制
+    'cut', // 剪切
+    'justifycenter', // 居中对齐
+    'justifyfull', // 两端对齐
+    'justifyleft', // 左对齐
+    'justifyright', // 右对齐
+    'insertorderedlist', // 有序列表
+    'insertunorderedlist', // 无序列表
   ],
   // 菜单提示文案配置
   lang: {
     bold: '加粗',
+    copy: '复制',
+    cut: '剪切',
+    inserthorizontalrule: '插入水平线',
+    insertorderedlist: '有序列表',
+    insertunorderedlist: '无序列表',
+    italic: '倾斜',
+    justifycenter: '居中对齐',
+    justifyfull: '两端对齐',
+    justifyleft: '左对齐',
+    justifyright: '右对齐',
+    removeformat: '清除样式',
+    redo: '重做',
+    underline: '下划线',
+    undo: '撤销',
     fontfamily: '字体',
     fontsize: '字号',
     lineheight: '行高',

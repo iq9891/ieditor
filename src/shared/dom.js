@@ -191,7 +191,11 @@ const IDom = class {
     if (!name) {
       return this;
     }
-    return this.setValue('setAttribute', 'class', `${this.getValue('getAttribute', 'class')} ${name}`);
+    let className = this.getValue('getAttribute', 'class');
+    if (className.indexOf(name) === -1) {
+      className += ` ${name}`;
+    }
+    return this.setValue('setAttribute', 'class', className);
   }
 
   /**
