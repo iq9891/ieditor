@@ -69,6 +69,7 @@ class Upload {
                 if ($image) {
                   $image.attr('src', url);
                 }
+                imageId++;
                 recursionAjax(--now);
               },
               onError: (err, response) => {
