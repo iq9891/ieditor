@@ -1,4 +1,4 @@
-import Select from 'component/select/select';
+import Select from 'select/select';
 
 class LineHeight extends Select {
   constructor(editor) {

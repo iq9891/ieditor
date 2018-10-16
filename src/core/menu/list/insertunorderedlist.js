@@ -1,4 +1,4 @@
-import Base from '../base/base';
+import Base from 'base/base';
 
 class Unorder extends Base {
   constructor(editor) {

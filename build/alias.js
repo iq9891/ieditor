@@ -6,5 +6,6 @@ module.exports = {
   text: resolve('src/core/text'),
   menu: resolve('src/core/menu'),
   shared: resolve('src/shared'),
-  component: resolve('src/core/component'),
+  base: resolve('src/core/menu/component/base'),
+  select: resolve('src/core/menu/component/select'),
 };

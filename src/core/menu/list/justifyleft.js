@@ -1,4 +1,4 @@
-import Base from '../base/base';
+import Base from 'base/base';
 
 class Justifyleft extends Base {
   constructor(editor) {

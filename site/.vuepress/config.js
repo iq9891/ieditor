@@ -28,8 +28,9 @@ module.exports = {
       alias: {
         text: resolve('src/core/text'),
         menu: resolve('src/core/menu'),
-        component: resolve('src/core/component'),
         shared: resolve('src/shared'),
+        base: resolve('src/core/menu/component/base'),
+        select: resolve('src/core/menu/component/select'),
       }
     }
   },

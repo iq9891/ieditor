@@ -1,4 +1,4 @@
-import Base from '../base/base';
+import Base from 'base/base';
 
 class Removeformat extends Base {
   constructor(editor) {
