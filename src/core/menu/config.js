@@ -19,7 +19,7 @@ import fontsize from './list/fontsize';
 import lineheight from './list/lineheight';
 
 import full from './list/full';
-// import image from './list/image';
+import image from './list/image';
 // import code from './list/code';
 // import backcolor from './list/backcolor';
 // import forecolor from './list/forecolor';
@@ -55,7 +55,7 @@ list.fontsize = fontsize;
 list.lineheight = lineheight;
 
 list.full = full;
-// list.image = image;
+list.image = image;
 // list.code = code;
 // list.backcolor = backcolor;
 // list.forecolor = forecolor;

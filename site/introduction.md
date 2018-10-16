@@ -17,6 +17,7 @@ export default {
 
 <!-- <div>
   <p>
+    <input type="file" @change="changeFile">
     <button @click="boldFn">加粗{{activeDatas.bold}}</button>
     <select @change="fontsizeFn" v-model="activeDatas.fontsize">
       <option value="false">选择字号</option>
@@ -74,6 +75,9 @@ export default {
     fontsizeFn(ev) {
       this.edit.menu.clicks.fontsize(ev.target.value);
     },
+    changeFile(ev) {
+      this.edit.menu.clicks.image(ev);
+    },
   },
 };
 </script> -->
@@ -85,5 +89,6 @@ export default {
 .diy-text {
   border: 2px solid #1996f9;
   height: 200px;
+  overflow: auto;
 }
 </style>

@@ -34,6 +34,7 @@ export default {
     'insertorderedlist', // 有序列表
     'insertunorderedlist', // 无序列表
     'full', // 全屏
+    'image', // 图片
   ],
   // 菜单提示文案配置
   lang: {
@@ -56,6 +57,7 @@ export default {
     fontsize: '字号',
     lineheight: '行高',
     full: '全屏',
+    image: '图片',
   },
   font: {
     fontfamily: [
@@ -105,5 +107,26 @@ export default {
     fontfamily: '字体',
     fontsize: '字号',
     lineheight: '行高',
+  },
+  image: {
+    type: 'ajax', // 上传图片显示的类型, base64, ajax
+    ajaxurl: 'https://www.easy-mock.com/mock/5a2e29ed89d2205cbfe7a459/emfe/upload', // ajax 类型的上传地址
+    emptyLinkTip: 'IEditor: 请设置请求链接', // 空连接报错提示信息
+    LinkErrorTip: 'IEditor: 请求链接错误', // 错误连接报错提示信息
+    success(res) { // 上传成功的处理， 需要返回 url 才能真正的添加内容
+      if (res.code === 10000) {
+        return res.data.url;
+      }
+      return alert('上传错误');
+    },
+    error() {
+      alert('上传错误');
+    },
+    alert(info) { // 错误提示
+      console.log(info);
+    },
+    loadimage: 'https://static2.evente.cn/backend/event/static/img/loading.dc496dd.gif', // 加载图片
+    multiple: true, // 允许多选
+    accept: 'image/jpg,image/jpeg,image/png,image/gif,image/svg', // 选择的类型
   },
 };

@@ -101,7 +101,8 @@ const copyObject = (obj) => {
   if (!isPlainObject(obj)) {
     return obj;
   }
-  return JSON.parse(JSON.stringify(obj));
+  // JSON.parse(JSON.stringify()); 不能克隆函数
+  return Object.assign({}, obj);
 };
 /**
  * 解析选项
