@@ -4,6 +4,7 @@ const replace = require('rollup-plugin-replace');
 const commonjs = require('rollup-plugin-commonjs');
 const alias = require('rollup-plugin-alias');
 const string = require('rollup-plugin-string');
+const html = require('rollup-plugin-html');
 const {eslint} = require('rollup-plugin-eslint');
 const progress = require('rollup-plugin-progress');
 const pkg = require('../package.json');
@@ -105,6 +106,9 @@ function genConfig (opts) {
       progress(),
       replace({
         __VERSION__: version
+      }),
+      html({
+        include: 'src/**/*.html',
       }),
       buble(),
       alias(aliases),
