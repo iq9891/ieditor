@@ -16,5 +16,13 @@
         background-image: url(icon/#{$icon}-on.svg);
       }
     }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      text-decoration: none !important;
+    }
   }
 }

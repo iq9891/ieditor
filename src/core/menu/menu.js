@@ -46,7 +46,7 @@ const IMenu = class {
       const menuBtn = new config[menuType](this.editor);
       tems += menuBtn.tem;
       this.btns.push(menuBtn);
-      this.clicks[menuType] = menuBtn.click.bind(this, menuType);
+      this.clicks[menuType] = menuBtn.click.bind(menuBtn, menuBtn.type);
     });
     $(`#${this.cfg.prefix}menu${this.editor.uid}`).html(tems);
 
@@ -66,11 +66,16 @@ const IMenu = class {
 
   // 检测哪个是激活
   testActive() {
+    this.onResult = {};
     this.btns.forEach((btn) => {
       if (btn.isActive) {
-        btn.isActive();
+        this.onResult[btn.typeName] = btn.isActive();
       }
     });
+    if (hasOwn(this.cfg.diy, 'active')) {
+      this.cfg.diy.active(this.onResult);
+    }
+    return this.onResult;
   }
 };
 

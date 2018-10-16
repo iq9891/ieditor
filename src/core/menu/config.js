@@ -13,9 +13,12 @@ import undo from './list/undo';
 import removeformat from './list/removeformat';
 import insertunorderedlist from './list/insertunorderedlist';
 import insertorderedlist from './list/insertorderedlist';
+
+import fontfamily from './list/fontfamily';
+import fontsize from './list/fontsize';
+import lineheight from './list/lineheight';
+
 // import image from './list/image';
-// import fontname from './list/fontname';
-// import fontsize from './list/fontsize';
 // import code from './list/code';
 // import full from './list/full';
 // import backcolor from './list/backcolor';
@@ -28,7 +31,6 @@ import insertorderedlist from './list/insertorderedlist';
 // import wordpaste from './list/wordpaste';
 // import formatblock from './list/formatblock';
 // import indent from './list/indent';
-// import lineheight from './list/lineheight';
 
 const list = Object.create(null);
 
@@ -47,9 +49,12 @@ list.undo = undo;
 list.removeformat = removeformat;
 list.insertunorderedlist = insertunorderedlist;
 list.insertorderedlist = insertorderedlist;
+
+list.fontfamily = fontfamily;
+list.fontsize = fontsize;
+list.lineheight = lineheight;
+
 // list.image = image;
-// list.fontname = fontname;
-// list.fontsize = fontsize;
 // list.code = code;
 // list.full = full;
 // list.backcolor = backcolor;
@@ -62,6 +67,5 @@ list.insertorderedlist = insertorderedlist;
 // list.wordpaste = wordpaste;
 // list.formatblock = formatblock;
 // list.indent = indent;
-// list.lineheight = lineheight;
 
 export default list;

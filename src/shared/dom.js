@@ -5,8 +5,8 @@ import {
   isUndefined,
   keys,
 } from './util';
-import { warn } from './helper';
-import px from './px';
+import { warn, noUnit } from './helper';
+import { px, delPx } from './px';
 import {
   delEvt,
   addEvt,
@@ -143,17 +143,20 @@ const IDom = class {
     if (isString(params)) {
       if (value) {
         return forEach(this, (elem) => {
-          elem.style[params] = params === 'zIndex' ? value : px(value);
+          elem.style[params] = noUnit(params) ? value : px(value);
         });
       }
       if (this.length) {
+        if (params === 'line-height') {
+          return String(delPx(getStyle(this[0])[params]) / delPx(getStyle(this[0])['font-size']));
+        }
         return getStyle(this[0])[params];
       }
       return this;
     }
     return forEach(this, (elem) => {
       forEach(keys(params), (paramsKey) => {
-        elem.style[paramsKey] = paramsKey === 'zIndex' || paramsKey === 'text-indent' ? params[paramsKey] : px(params[paramsKey]);
+        elem.style[paramsKey] = noUnit(paramsKey) ? params[paramsKey] : px(params[paramsKey]);
       });
     });
   }

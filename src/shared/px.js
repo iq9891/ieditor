@@ -1,3 +1,4 @@
+import { isString } from './util';
 /**
  * 解决 px 问题
  *
@@ -9,8 +10,13 @@
    console.log(px('#666')); // '#fff'
  * @returns {string} value 新字符串
  */
-function px(value) {
+export const px = (value) => {
   const newVal = value - 0;
   return typeof value === 'number' || (typeof newVal === 'number' && !Number.isNaN(newVal)) ? `${value}px` : value;
-}
-export default px;
+};
+export const delPx = (value) => {
+  if (!isString(value)) {
+    return value;
+  }
+  return value.replace(/px/g, '');
+};

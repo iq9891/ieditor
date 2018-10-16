@@ -20,11 +20,12 @@ const IText = class {
     const isDiyText = !hasOwn(configDiy, 'text') || (hasOwn(configDiy, 'text') && !configDiy.text);
     // 渲染
     if (isDiyText) {
+      const contents = this.getChilds();
       this.render();
       // 因为在 虚拟 DOM 的框架中会获取不到元素添加不了事件
       setTimeout(() => {
         this.$text = $(`#${this.prefix}text${this.uid}`);
-        this.afterInit();
+        this.afterInit(contents);
       }, 3);
     } else {
       this.$text = $(configDiy.text);
@@ -42,8 +43,7 @@ const IText = class {
     ));
   }
 
-  afterInit() {
-    const contents = this.getChilds();
+  afterInit(contents = this.getChilds()) {
     // 绑定事件
     this.bind();
     // 修复之前的内容

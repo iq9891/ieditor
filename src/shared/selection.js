@@ -153,7 +153,7 @@ const ISelection = class {
   */
   handle(name, value) {
     if (this[name]) {
-      this[name]();
+      this[name](value);
     } else {
       document.execCommand(name, false, value);
       // 可以多次操作

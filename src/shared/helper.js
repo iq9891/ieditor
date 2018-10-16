@@ -15,6 +15,19 @@ export const filterNoObjectKey = (obj) => {
   return newObj.filter(key => !isPlainObject(objIsArray ? key : obj[key]));
 };
 /**
+ * 样式筛选不加单位
+ */
+const styleList = [
+  'line-height',
+  'text-indent',
+  'z-index',
+];
+export const noUnit = str => styleList.filter(styleKey => styleKey === str).length > 0;
+/**
+ * 过滤中横线
+ */
+export const filterLines = str => str.replace('-', '');
+/**
  * 温馨提示
  */
 export const warn = (msg) => {

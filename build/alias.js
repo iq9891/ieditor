@@ -6,4 +6,5 @@ module.exports = {
   text: resolve('src/core/text'),
   menu: resolve('src/core/menu'),
   shared: resolve('src/shared'),
+  component: resolve('src/core/component'),
 };

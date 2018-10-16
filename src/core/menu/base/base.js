@@ -8,6 +8,7 @@ const IBase = class {
     this.$editor = editor.$editor;
     this.cfg = editor.cfg;
     this.type = type;
+    this.typeName = type;
     this.selected = selected;
     // 初始化
     this.create();
@@ -52,33 +53,17 @@ const IBase = class {
   }
 
   // 是否是选中
-  // 是否是选中
   isActive() {
     const { cfg, type, editor } = this;
-    const className = 'ied-menu-link-active';
-    if (type.indexOf('justify') > -1) {
-      const justifys = [
-        'justifycenter', // 两端对齐
-        'justifyfull', // 两端对齐
-        'justifyleft', // 左对齐
-        'justifyright', // 右对齐
-      ];
-      justifys.forEach((justify) => {
-        const $item = $(`#${cfg.prefix}${justify}${editor.uid}`);
-        if (document.queryCommandState(justify)) {
-          $item.addClass(className);
-        } else {
-          $item.removeClass(className);
-        }
-      });
+    const className = `${cfg.prefix}menu-link-active`;
+    const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
+    const status = document.queryCommandState(type);
+    if (status) {
+      $item.addClass(className);
     } else {
-      const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
-      if (document.queryCommandState(type)) {
-        $item.addClass(className);
-      } else {
-        $item.removeClass(className);
-      }
+      $item.removeClass(className);
     }
+    return status;
   }
 };
 

@@ -1,0 +1,11 @@
+<div class="{{prefix}}select">
+  <a id="{{prefix}}{{type}}{{uid}}" href="javascript:void('{{lang}}');" title="{{lang}}" class="{{prefix}}menu-link">
+    <span class="{{prefix}}select-btn-font">{{placeholder}}</span>
+    <i class="{{prefix}}select-btn-arrow"></i>
+  </a>
+  <ul class="{{prefix}}select-list">
+    {{x-for="list in data"}}
+      <li class="{{prefix}}select-list-item {{prefix}}select-list-item{{uid}}">{{list}}</li>
+    {{/x-for}}
+  </ul>
+</div>
