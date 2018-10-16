@@ -33,6 +33,7 @@ export default {
     'justifyright', // 右对齐
     'insertorderedlist', // 有序列表
     'insertunorderedlist', // 无序列表
+    'full', // 全屏
   ],
   // 菜单提示文案配置
   lang: {
@@ -54,6 +55,7 @@ export default {
     fontfamily: '字体',
     fontsize: '字号',
     lineheight: '行高',
+    full: '全屏',
   },
   font: {
     fontfamily: [
@@ -80,14 +82,14 @@ export default {
       'sans-serif',
     ],
     fontsize: [
-      '10px',
-      '11px',
       '12px',
       '14px',
       '16px',
       '18px',
       '20px',
       '24px',
+      '30px',
+      '36px',
     ],
     lineheight: [
       '1',

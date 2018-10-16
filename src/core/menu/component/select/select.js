@@ -85,9 +85,12 @@ const Select = class {
   isActive() {
     const sel = this.editor.selection;
     const $elem = sel.getSelectionContainerElem(sel.getRange());
-    const fontStyle = $elem.css(this.type);
-    if ($elem && this.$font) {
-      this.$font.html(fontStyle);
+    let fontStyle = '';
+    if ($elem) {
+      fontStyle = $elem.css(this.type);
+      if (this.$font) {
+        this.$font.html(fontStyle);
+      }
     }
     return fontStyle;
   }
