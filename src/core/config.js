@@ -37,6 +37,7 @@ export default {
     'image', // 图片
     'formatblock', // 引用
     'indent', // 左缩进
+    'code', // 源代码,
   ],
   // 菜单提示文案配置
   lang: {
@@ -62,6 +63,7 @@ export default {
     image: '图片',
     formatblock: '引用',
     indent: '左缩进',
+    code: '源代码',
   },
   font: {
     fontfamily: [

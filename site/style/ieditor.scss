@@ -52,4 +52,20 @@
       }
     }
   }
+
+  &-code {
+    resize: none;
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    display: block;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    padding: 0;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }

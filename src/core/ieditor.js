@@ -15,6 +15,7 @@ let editorId = 1; // 编辑器变化 多个编辑器自动累加
 const IEditor = class {
   constructor(options) {
     this.cfg = defultConfig;
+    this.code = false;
     let elem = '';
     if (isHtmlArray(options)) {
       elem = options;
