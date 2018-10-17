@@ -220,7 +220,91 @@ const IDom = class {
     });
   }
 
-  //
+  /**
+   * IDom 包裹某一个元素
+   * @param {String} nodeName 要包裹元素的节点名称
+   */
+  wrap(nodeName) {
+    if (this.length) {
+      const self = this[0];
+      const newHtml = document.createElement(nodeName);
+      self.parentNode.insertBefore(newHtml, self);
+      newHtml.appendChild(self);
+    }
+  }
+
+  /**
+   * IDom 删除父级元素保留自身
+   * 为 blockquote 量身定制
+   */
+  unwrap() {
+    if (this.length) {
+      const self = this[0];
+      const parent = self.parentNode;
+      const childs = parent.childNodes;
+      const grandpa = parent.parentNode;
+      if (childs.length === 1) {
+        grandpa.insertBefore(self.cloneNode(true), parent);
+        parent.removeChild(self);
+      } else {
+        // 如果引用中不止一个子节点
+        const nodeList = this.splitNode();
+        // 如果前面有
+        if (nodeList.before.length) {
+          const newBeforeHtml = document.createElement('blockquote');
+          nodeList.before.forEach((beforeItem) => {
+            newBeforeHtml.appendChild(beforeItem);
+          });
+          grandpa.insertBefore(newBeforeHtml, parent);
+        }
+
+        grandpa.insertBefore(self.cloneNode(true), parent);
+        parent.removeChild(self);
+
+        if (nodeList.after.length) {
+          const newAfterHtml = document.createElement('blockquote');
+          nodeList.after.forEach((beforeItem) => {
+            newAfterHtml.appendChild(beforeItem);
+          });
+          grandpa.insertBefore(newAfterHtml, parent);
+        }
+        grandpa.removeChild(parent);
+      }
+      // 如果没有子节点就删除
+      if (!childs.length) {
+        grandpa.removeChild(parent);
+      }
+    }
+  }
+
+  /**
+   * 分割节点 前节点集合， 当前节点， 后节点集合
+   */
+  splitNode() {
+    const nodeList = {
+      before: [],
+      node: null,
+      after: [],
+    };
+    if (this.length) {
+      const self = this[0];
+      const parent = self.parentNode;
+      const childs = parent.childNodes;
+      const $childs = new IDom(childs);
+      let isEqual = false;
+      $childs.forEach((cItem) => {
+        const index = isEqual ? 'after' : 'before';
+        if (cItem === self) {
+          isEqual = true;
+          nodeList.node = cItem.cloneNode(true);
+        } else {
+          nodeList[index].push(cItem.cloneNode(true));
+        }
+      });
+    }
+    return nodeList;
+  }
+
   /**
    * IDom 获取第几个元素
    * @param {Number} index 索引

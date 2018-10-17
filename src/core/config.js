@@ -35,6 +35,7 @@ export default {
     'insertunorderedlist', // 无序列表
     'full', // 全屏
     'image', // 图片
+    'formatblock', // 引用
   ],
   // 菜单提示文案配置
   lang: {
@@ -58,6 +59,7 @@ export default {
     lineheight: '行高',
     full: '全屏',
     image: '图片',
+    formatblock: '引用',
   },
   font: {
     fontfamily: [
@@ -117,10 +119,10 @@ export default {
       if (res.code === 10000) {
         return res.data.url;
       }
-      return alert('上传错误');
+      return console.log('上传错误');
     },
     error() {
-      alert('上传错误');
+      console.log('上传错误');
     },
     alert(info) { // 错误提示
       console.log(info);
