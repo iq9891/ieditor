@@ -21,6 +21,7 @@ import lineheight from './list/lineheight';
 import full from './list/full';
 import image from './list/image';
 import formatblock from './list/formatblock';
+import indent from './list/indent';
 // import code from './list/code';
 // import backcolor from './list/backcolor';
 // import forecolor from './list/forecolor';
@@ -30,7 +31,6 @@ import formatblock from './list/formatblock';
 // import paste from './list/paste';
 // import plainpaste from './list/plainpaste';
 // import wordpaste from './list/wordpaste';
-// import indent from './list/indent';
 
 const list = Object.create(null);
 
@@ -57,6 +57,7 @@ list.lineheight = lineheight;
 list.full = full;
 list.image = image;
 list.formatblock = formatblock;
+list.indent = indent;
 // list.code = code;
 // list.backcolor = backcolor;
 // list.forecolor = forecolor;
@@ -66,6 +67,5 @@ list.formatblock = formatblock;
 // list.paste = paste;
 // list.plainpaste = plainpaste;
 // list.wordpaste = wordpaste;
-// list.indent = indent;
 
 export default list;

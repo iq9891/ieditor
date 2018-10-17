@@ -36,6 +36,7 @@ export default {
     'full', // 全屏
     'image', // 图片
     'formatblock', // 引用
+    'indent', // 左缩进
   ],
   // 菜单提示文案配置
   lang: {
@@ -60,6 +61,7 @@ export default {
     full: '全屏',
     image: '图片',
     formatblock: '引用',
+    indent: '左缩进',
   },
   font: {
     fontfamily: [
