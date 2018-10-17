@@ -133,4 +133,5 @@ export default {
     multiple: true, // 允许多选
     accept: 'image/jpg,image/jpeg,image/png,image/gif,image/svg', // 选择的类型
   },
+  reset: true,
 };

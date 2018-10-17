@@ -11,6 +11,9 @@ const IText = class {
     this.$editor = editor.$editor;
     this.uid = editor.uid;
     this.prefix = editor.cfg.prefix;
+    this.resetPosY = 0;
+    this.resetLastMove = 0;
+    this.$doc = $(document);
     // 初始化内容
     this.init();
   }
@@ -58,6 +61,34 @@ const IText = class {
     this.tab();
     // 清空之后
     this.empty();
+
+    const $reset = $(`#${this.prefix}reset${this.editor.uid}`);
+
+    if (this.editor.cfg.reset) {
+      $reset.on('mousedown', this.resetDown.bind(this));
+      $reset.parent().css('display', 'block');
+    }
+  }
+
+  // 改变大小鼠标按下
+  resetDown(ev = window.event) {
+    this.resetPosY = ev.pageY;
+    this.$doc
+      .on('mousemove', this.resetMove.bind(this))
+      .on('mouseup', this.resetUp.bind(this));
+  }
+
+  resetMove(evMove = window.evente) {
+    const move = evMove.pageY - this.resetPosY;
+    const height = parseFloat(this.$text.css('height'));
+    this.$text.css('height', height + (move - this.resetLastMove));
+    this.resetLastMove = move;
+  }
+
+  resetUp() {
+    this.$doc.off('mousemove mouseup');
+    this.resetLastMove = 0;
+    this.resetPosY = 0;
   }
 
   // 实时保存选取

@@ -1,5 +1,5 @@
 .#{$prefix}text {
-  height: calc(100% - 32px);
+  min-height: 270px;
   width: calc(100% - 32px);
   padding: 16px;
   overflow: auto;
