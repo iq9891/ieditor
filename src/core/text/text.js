@@ -100,11 +100,13 @@ const IText = class {
       if (e.keyCode === 9 || e.keyCode === 8) {
         return;
       }
-      const { selection, menu } = this.editor;
-      // 随时保存选区
-      selection.saveRange();
-      // 更新按钮 ative 状态
-      menu.testActive();
+      const { selection, menu, code } = this.editor;
+      if (!code) {
+        // 随时保存选区
+        selection.saveRange();
+        // 更新按钮 ative 状态
+        menu.testActive();
+      }
     };
     // 按键后保存
     $textElem.on('keyup', saveRange);

@@ -77,6 +77,28 @@ const IMenu = class {
     }
     return this.onResult;
   }
+
+  // 设置|取消禁用状态
+  testDisable() {
+    const {
+      cfg,
+      uid,
+      code,
+    } = this.editor;
+    const pfix = cfg.prefix;
+    const $link = $(`.${pfix}menu-link`);
+    const $select = $(`.${pfix}select`);
+    const disableLinkName = `${pfix}menu-link-disable`;
+    const disableSelectName = `${pfix}select-disable`;
+    if (code) {
+      $link.addClass(disableLinkName);
+      $select.addClass(disableSelectName);
+      $(`#${pfix}code${uid}`).removeClass(disableLinkName);
+    } else {
+      $link.removeClass(disableLinkName);
+      $select.removeClass(disableSelectName);
+    }
+  }
 };
 
 export default IMenu;

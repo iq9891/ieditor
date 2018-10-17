@@ -15,5 +15,9 @@
     &-#{$icon} {
       background-image: url(icon/#{$icon}.svg);
     }
+
+    .#{$prefix}menu-link-disable &-#{$icon} {
+      background-image: url(icon/#{$icon}-disable.svg);
+    }
   }
 }

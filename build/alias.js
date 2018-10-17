@@ -8,4 +8,5 @@ module.exports = {
   shared: resolve('src/shared'),
   base: resolve('src/core/menu/component/base'),
   select: resolve('src/core/menu/component/select'),
+  modal: resolve('src/core/menu/component/modal'),
 };

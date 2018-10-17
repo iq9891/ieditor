@@ -1,7 +1,9 @@
 @import "./config.scss";
+@import "./base.scss";
 @import "./text.scss";
 @import "./icon.scss";
 @import "./select.scss";
+@import "./modal.scss";
 @import "./menu.scss";
 
 .#{$editor} {
@@ -22,6 +24,10 @@
 
   :-moz-placeholder { /* Firefox 18- */
     color: $title-color;
+  }
+
+  & * {
+    box-sizing: content-box !important;
   }
 
   &-reset {

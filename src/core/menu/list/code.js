@@ -15,6 +15,8 @@ class Code extends Base {
         this.sourceCode();
       }
       editor.code = !editor.code;
+      editor.menu.testDisable();
+      this.isActive();
     });
   }
 
@@ -34,6 +36,18 @@ class Code extends Base {
     $text.html(`<textarea id="${prefix}code" class="${prefix}code"></textarea>`);
     $text.attr('contentEditable', false);
     $(`#${prefix}text${this.editor.uid} textarea`).html(html);
+  }
+
+  // 是否是源代码
+  isActive() {
+    const { cfg, type, editor } = this;
+    const className = `${cfg.prefix}menu-link-active`;
+    const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
+    if (editor.code) {
+      $item.addClass(className);
+    } else {
+      $item.removeClass(className);
+    }
   }
 }
 
