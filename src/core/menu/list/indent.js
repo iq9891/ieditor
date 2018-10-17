@@ -7,7 +7,7 @@ class Indent extends Base {
   }
 
   // 点击菜单按钮事件
-  click(type) {
+  click() {
     const { selection, code, menu } = this.editor;
     // 如果是源代码
     if (code) {
