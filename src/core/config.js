@@ -18,6 +18,7 @@ export default {
     'undo', // 撤销
     'redo', // 重做
     'backcolor', // 背景颜色
+    'forecolor', // 字体颜色
     'fontfamily', // 字体
     'fontsize', // 字号
     'lineheight', // 行高
@@ -70,6 +71,7 @@ export default {
     video: '视频',
     link: '链接',
     backcolor: '背景颜色',
+    forecolor: '字体颜色',
   },
   font: {
     fontfamily: [
