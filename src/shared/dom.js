@@ -278,6 +278,24 @@ const IDom = class {
   }
 
   /**
+   * XDom 追加子元素
+   *
+   * @param {Object} child 要添加的 XDom 对象
+   * @private
+   * @example
+   $('div').append($('<div><p>xeditor</p></div>'))
+   * @returns {Object} XDOM 对象
+   */
+  append(child) {
+    this.forEach((elem) => {
+      child.forEach((cd) => {
+        elem.appendChild(cd.cloneNode(true));
+      });
+    });
+    return this;
+  }
+
+  /**
    * 分割节点 前节点集合， 当前节点， 后节点集合
    */
   splitNode() {

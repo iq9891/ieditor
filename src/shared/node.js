@@ -41,3 +41,12 @@ export function searchNode(element, node, callback = () => {}) {
 
   return false;
 }
+
+/**
+ * XDom 创建元素
+ *
+ * @param {String} nodeName 节点名字
+ */
+export function createElement(nodeName) {
+  return document.createElement(nodeName);
+}

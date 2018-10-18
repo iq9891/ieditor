@@ -12,6 +12,16 @@ $input-size: $handle-size - 21;
   user-select: none;
   background: $white;
 
+  &-color {
+    width: 180px;
+    left: calc(50% - 90px);
+  }
+
+  &-h2 {
+    font-size: 12px;
+    margin: 0 0 4px;
+  }
+
   &-hide {
     display: none;
   }
@@ -45,7 +55,7 @@ $input-size: $handle-size - 21;
       height: 2px;
 
       &:hover {
-        & .#{$prefix}dialog-close {
+        & .#{$prefix}modal-close {
           &::before,
           &::after {
             background: $icon-color-hover;
@@ -53,128 +63,21 @@ $input-size: $handle-size - 21;
         }
       }
     }
-  } // end   &-close xe-dialog-close
+  } // end   &-close ied-modal-close
 
   &-header {
     height: 30px;
-    padding: 0 8px 0 4px;
+    line-height: 30px;
+    font-size: 14px;
+    padding: 0 8px;
     display: flex;
     border-bottom: 1px solid $border-color;
-  }
-
-  &-title {
-    color: $title-color;
-    text-decoration: none;
-    font-size: 14px;
-    margin: 0 4px;
-    line-height: 30px;
-
-    &:hover {
-      color: $title-color-hover;
-    }
-
-    &-active {
-      color: $title-color-active;
-    }
-  }
-
-  &-upload {
-    border: 1px dashed $border-color;
-    width: 100px;
-    height: 100px;
-    display: block;
-    margin: 0 auto;
-    line-height: 98px;
-    text-align: center;
-    color: $title-color;
-    text-decoration: none;
-
-    &:hover {
-      color: $title-color-hover;
-      border: 1px dashed $title-color-hover;
-    }
+    color: $color;
   }
 
   &-content {
     background: $bg-main;
-
-    &-upload {
-      position: relative;
-      padding: 16px 0;
-    }
-
-    &-url {
-      padding: 16px;
-    }
-  }
-
-  &-file {
-    width: 102px;
-    height: 102px;
-    position: absolute;
-    left: 109px;
-    top: 16px;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer;
-
-    @keyframes rotate {
-      from {
-        transform: rotate(0);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    &-tip {
-      font-style: normal;
-      transform: rotate(0);
-      transform-origin: center center;
-      display: block;
-
-      &-uping {
-        animation: 1s linear rotate infinite;
-      }
-    }
-  }
-
-  &-table {
-    width: calc(100% - 48px);
-    display: inline-block;
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      appearance: none !important;
-      margin: 0;
-    }
-
-    &-content {
-      display: flex;
-      padding: 16px;
-    }
-
-    &-btn {
-      cursor: pointer;
-      margin: 0 4px;
-    }
-
-    &-dialog {
-      width: 386px;
-    }
-
-    &-box {
-      margin: 8px 0;
-    }
-  }
-
-  &-textarea {
-    border: 1px solid $border-color;
-    margin: 0 0 8px;
-    height: 100px;
-    width: calc(100% - 18px);
-    resize: none;
+    padding: 10px;
   }
 
   &-width {
@@ -209,146 +112,70 @@ $input-size: $handle-size - 21;
     }
   }
 
-  // 颜色
-  &-color {
-    border: 1px solid $border-color;
-    background: linear-gradient(transparent, #000), linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
-    width: 170px;
-    height: 170px;
-    overflow: hidden;
-    cursor: crosshair;
-    float: left;
-    position: relative;
+  &-standard {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+    cursor: pointer;
+    font-size: 0;
+
+    &-item {
+      width: 14px;
+      height: 14px;
+      margin: 0 2px 0 0;
+      display: inline-block;
+      font-size: 0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  &-diy {
+    display: flex;
+    justify-content: space-between;
 
     &-box {
-      padding: 8px;
-      height: 172px;
-      background: #fff;
+      height: 16px;
+      width: 50%;
+      border-radius: 1px;
+      border: 1px solid $border-color;
+      display: flex;
     }
 
-    &-hue {
-      border: 1px solid #dcdcdc;
-      width: 20px;
-      height: 170px;
-      cursor: n-resize;
-      background: linear-gradient(to bottom, #f00, #ff0080, #f0f, #8000ff, #00f, #0080ff, #0ff, #00ff80, #0f0, #80ff00, #ff0, #ff8000, #f00);
-      float: left;
-      margin: 0 16px;
-      position: relative;
-
-      &-move {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: rgba(0, 0, 0, 0.4);
-      }
-
-      &-left,
-      &-right {
-        content: ' ';
-        border-color: transparent;
-        border-style: solid;
-        width: 0;
-        height: 0;
-        position: absolute;
-        top: -4px;
-      }
-
-      &-left {
-        right: -5px;
-        border-width: 5px 0 5px 5px;
-        border-left-color: rgba(0, 0, 0, 0.3);
-        left: -7px;
-      }
-
-      &-right {
-        border-width: 5px 5px 5px 0;
-        border-right-color: rgba(0, 0, 0, 0.3);
-        left: auto;
-        right: -7px;
-      }
-    }
-
-    &-inner {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      top: -4px;
-      left: -4px;
-      box-shadow: 0 0 0 1px #fff, 0 0 0 2px #000;
-      border-radius: 4px;
-    }
-
-    &-field {
-      border: 1px solid #dcdcdc;
-      height: 22px;
-      width: $handle-size - 2;
-      overflow: hidden;
-      background: #fff;
-      color: $title-color;
+    &-icon {
       font-size: 12px;
-      margin: 4px 0 0;
-    }
-
-    &-inp {
-      margin: 0;
-      height: 22px;
-      width: $input-size - 2;
-      line-height: 22px;
-      background: transparent;
-      border: none;
-      font-size: 12px;
-      color: $title-color;
-      outline: none;
-      float: left;
+      text-align: center;
+      color: $color;
       padding: 0 4px;
+      line-height: 18px;
+      background: $menu-color;
     }
 
-    &-handle {
-      float: left;
-      width: $handle-size;
+    &-input {
+      border: none;
+      width: calc(100% - 15px);
+
+      &:focus {
+        outline: none;
+      }
     }
 
-    &-title {
-      border-right: 1px solid #dcdcdc;
-      margin: 0;
-      width: 12px;
-      height: 22px;
-      line-height: 22px;
-      font-size: 10px;
-      background: #f4f4f4;
-      color: $title-color;
-      text-align: center;
-      float: left;
-    }
-
-    &-show-color {
-      border: 1px solid #dcdcdc;
-      height: 24px;
-      width: $handle-size - 2;
-    }
-
-    &-new-color,
-    &-old-color {
-      height: 24px;
-      width: $handle-size / 2 - 1;
-      float: left;
-    }
-
-    &-sub {
-      border: 1px solid #dcdcdc;
-      height: 28px;
-      line-height: 28px;
-      background: #f4f4f4;
-      text-align: center;
-      color: $title-color;
-      font-size: 12px;
-      display: block;
-      margin: 4px 0 0;
-      padding: 0 26px;
+    &-btn {
+      border: 1px solid $border-color;
+      border-radius: 1px;
       text-decoration: none;
+      text-align: center;
+      height: 16px;
+      line-height: 16px;
+      width: 20%;
+      font-size: 12px;
+      color: $color;
+
+      &:hover {
+        text-decoration: none !important;
+      }
     }
-  } // end color
+  }
 }

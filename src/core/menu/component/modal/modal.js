@@ -1,4 +1,5 @@
 import parser from 'shared/parser';
+import { createElement } from 'shared/node';
 import $ from 'shared/dom';
 import modalTem from './modal.html';
 
@@ -8,6 +9,7 @@ class Modal {
     this.$editor = editor.$editor;
     this.cfg = editor.cfg;
     this.type = type;
+    this.$menu = $(`#${this.cfg.prefix}menu${editor.uid}`);
     // 初始化
     this.render();
     this.bind();
@@ -16,15 +18,16 @@ class Modal {
   render() {
     const { cfg, type, editor } = this;
     const { lang, prefix } = cfg;
-    this.$menu = $(`#${prefix}menu${editor.uid}`);
-    $(`#${prefix}menu${editor.uid}`).html(this.$menu.html() + parser(modalTem, {
+    const $newElement = $(createElement('div'));
+    $newElement.html(parser(modalTem, {
       lang: lang[type],
       type,
       uid: editor.uid,
       prefix,
     }));
-    this.$modal = $(`#${prefix}${type}-modal`);
-    this.$content = $(`#${prefix}${type}-modal-content`);
+    $(`#${prefix}modal${editor.uid}`).append($newElement);
+    this.$modal = $(`#${prefix}${type}-modal${editor.uid}`);
+    this.$content = $(`#${prefix}${type}-modal-content${editor.uid}`);
   }
 
   setContent(html) {
@@ -32,9 +35,9 @@ class Modal {
   }
 
   bind() {
-    const { cfg, type } = this;
+    const { cfg, type, editor } = this;
 
-    $(`#${cfg.prefix}${type}-modal-close`).on('click', () => {
+    $(`#${cfg.prefix}${type}-modal-close${editor.uid}`).on('click', () => {
       this.hide();
     });
   }

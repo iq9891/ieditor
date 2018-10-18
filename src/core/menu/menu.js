@@ -48,6 +48,7 @@ const IMenu = class {
       this.btns.push(menuBtn);
       this.clicks[menuType] = menuBtn.click.bind(menuBtn, menuBtn.type);
     });
+    tems += `<div id="${this.cfg.prefix}modal${this.editor.uid}"></div>`;
     $(`#${this.cfg.prefix}menu${this.editor.uid}`).html(tems);
 
     this.btns.forEach((btn) => {
