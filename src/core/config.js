@@ -17,6 +17,7 @@ export default {
   menus: [
     'undo', // 撤销
     'redo', // 重做
+    'backcolor', // 背景颜色
     'fontfamily', // 字体
     'fontsize', // 字号
     'lineheight', // 行高
@@ -68,6 +69,7 @@ export default {
     code: '源代码',
     video: '视频',
     link: '链接',
+    backcolor: '背景颜色',
   },
   font: {
     fontfamily: [
@@ -126,6 +128,10 @@ export default {
     linkurl: 'https://',
     linktitle: '链接文字',
     linkbutton: '插入',
+    colorok: '确定',
+    colorclear: '透明',
+    colortitle: '主题色',
+    colordiy: '自定义颜色',
   },
   image: {
     type: 'ajax', // 上传图片显示的类型, base64, ajax
@@ -147,6 +153,9 @@ export default {
     loadimage: 'https://static2.evente.cn/backend/event/static/img/loading.dc496dd.gif', // 加载图片
     multiple: true, // 允许多选
     accept: 'image/jpg,image/jpeg,image/png,image/gif,image/svg', // 选择的类型
+  },
+  color: {
+    color: ['#f2f2f2', '#7f7f7f', '#ddd9c3', '#c6d9f0', '#dbe5f1', '#f2dcdb', '#ebf1dd', '#e5e0ec', '#dbeef3', '#fdeada', '#d8d8d8', '#595959', '#c4bd97', '#8db3e2', '#b8cce4', '#e5b9b7', '#d7e3bc', '#ccc1d9', '#b7dde8', '#fbd5b5', '#bfbfbf', '#3f3f3f', '#938953', '#548dd4', '#95b3d7', '#d99694', '#c3d69b', '#b2a2c7', '#92cddc', '#fac08f', '#a5a5a5', '#262626', '#494429', '#17365d', '#366092', '#953734', '#76923c', '#5f497a', '#31859b', '#e36c09', '#7f7f7f', '#0c0c0c', '#1d1b10', '#0f243e', '#244061', '#632423', '#4f6128', '#3f3151', '#205867', '#974806'],
   },
   reset: true,
 };
