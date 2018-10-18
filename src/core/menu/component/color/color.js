@@ -85,6 +85,11 @@ class Color extends Base {
       this.click(type, `#${$diy.val()}`);
       this.hide();
     });
+
+    $(`#${cfg.prefix}${type}-clear${editor.uid}`).on('click', () => {
+      this.click(type, '#ffffff');
+      this.hide();
+    });
   }
 
   show() {
