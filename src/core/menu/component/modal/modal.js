@@ -1,5 +1,6 @@
 import parser from 'shared/parser';
 import { createElement } from 'shared/node';
+import { delPx } from 'shared/px';
 import $ from 'shared/dom';
 import modalTem from './modal.html';
 
@@ -49,7 +50,7 @@ class Modal {
   show() {
     this.$modal
       .removeClass(`${this.editor.cfg.prefix}modal-hide`)
-      .css('top', this.$menu.css('height'));
+      .css('top', Number(delPx(this.$menu.css('height'))) + 1);
   }
 }
 
