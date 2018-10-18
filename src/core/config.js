@@ -39,6 +39,7 @@ export default {
     'indent', // 左缩进
     'code', // 源代码,
     'video', // 视频,
+    'link', // 链接,
   ],
   // 菜单提示文案配置
   lang: {
@@ -66,6 +67,7 @@ export default {
     indent: '左缩进',
     code: '源代码',
     video: '视频',
+    link: '链接',
   },
   font: {
     fontfamily: [
@@ -121,6 +123,9 @@ export default {
     lineheight: '行高',
     videotitle: '格式如：<iframe src="..."></iframe>',
     videobutton: '插入',
+    linkurl: 'https://',
+    linktitle: '链接文字',
+    linkbutton: '插入',
   },
   image: {
     type: 'ajax', // 上传图片显示的类型, base64, ajax
