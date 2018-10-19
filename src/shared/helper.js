@@ -27,11 +27,3 @@ export const noUnit = str => styleList.filter(styleKey => styleKey === str).leng
  * 过滤中横线
  */
 export const filterLines = str => str.replace('-', '');
-/**
- * 温馨提示
- */
-export const warn = (msg) => {
-  if (process.env.NODE_ENV !== 'production') {
-    console.error(`[ieditor]: ${msg}`);
-  }
-};

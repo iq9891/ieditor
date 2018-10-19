@@ -1,7 +1,6 @@
 import {
   genReg,
   filterNoObjectKey,
-  warn,
 } from './helper';
 /**
  * 匹配某一个字符串，并替换对应字符串的值
@@ -28,7 +27,6 @@ export const parseKey = (htmlStr, option) => {
     }
     return htmlStr;
   } catch (e) {
-    warn(e);
     return htmlStr;
   }
 };
@@ -58,7 +56,6 @@ export const parseLoop = (htmlStr, option) => {
     }
     return parseKey(htmlStr, option);
   } catch (e) {
-    warn(e);
     return parseKey(htmlStr, option);
   }
 };

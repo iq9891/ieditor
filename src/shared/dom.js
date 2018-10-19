@@ -5,7 +5,7 @@ import {
   isUndefined,
   keys,
 } from './util';
-import { warn, noUnit } from './helper';
+import { noUnit } from './helper';
 import { px, delPx } from './px';
 import {
   delEvt,
@@ -37,7 +37,6 @@ const Dom = class {
    */
   $init(selector) {
     if (!selector) {
-      warn('请传一个选择器');
       return this;
     }
     // 如果是一个 DOM 元素（是 element , 或者 document ）
@@ -454,7 +453,7 @@ $('div').on('click mouserover', () => {
                   fn.call(target, e);
                 }
               } catch (err) {
-                warn(err);
+                addEvt(el, tp, () => {});
               }
             };
             events[getDomId(el)][tp].push(agentFn);
