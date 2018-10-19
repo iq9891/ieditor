@@ -28,14 +28,15 @@ class Code extends Base {
 
   sourceCode() {
     const { $text } = this.editor.text;
+    const cfgUid = this.editor.uid;
     const {
       prefix,
     } = this.cfg;
     const html = $text.html();
     $text.html('');
-    $text.html(`<textarea id="${prefix}code" class="${prefix}code"></textarea>`);
+    $text.html(`<textarea id="${prefix}code${cfgUid}" class="${prefix}code"></textarea>`);
     $text.attr('contentEditable', false);
-    $(`#${prefix}text${this.editor.uid} textarea`).html(html);
+    $(`#${prefix}text${cfgUid} textarea`).html(html);
   }
 
   // 是否是源代码
