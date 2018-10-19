@@ -1,8 +1,8 @@
 import $ from './dom';
 /**
-* ISelection 对象
+* Selection 对象
 */
-const ISelection = class {
+const Selection = class {
   constructor(editor) {
     this.editor = editor;
     this.$editor = editor.$editor;
@@ -163,4 +163,4 @@ const ISelection = class {
   }
 };
 
-export default ISelection;
+export default Selection;

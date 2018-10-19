@@ -1,12 +1,10 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import {
-  hasOwn,
-} from 'shared/util';
+import { hasOwn, } from 'shared/util';
 import config from './config';
 import menuTem from './index.html';
 
-const IMenu = class {
+const Menu = class {
   constructor(editor) {
     this.editor = editor;
     this.$editor = editor.$editor;
@@ -102,4 +100,4 @@ const IMenu = class {
   }
 };
 
-export default IMenu;
+export default Menu;

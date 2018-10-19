@@ -1,9 +1,9 @@
 import Base from 'base/base';
 
-class Unorder extends Base {
+class UnOrderList extends Base {
   constructor(editor) {
     super(editor, 'insertunorderedlist');
   }
 }
 
-export default Unorder;
+export default UnOrderList;

@@ -22,14 +22,14 @@ import { getDomId } from './parsedom';
 // }
 const events = {};
 
-const IDom = class {
+const Dom = class {
   constructor(selector) {
     this.length = 0;
     return this.$init(selector);
   }
 
   /**
-   * IDom 初始化
+   * Dom 初始化
    *
    * @param {String} selector 要选择的元素或者要添加的元素
    * @private
@@ -58,7 +58,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 获取节点名字
+   * Dom 获取节点名字
    * @returns {string} 节点名字
    */
   getNodeName() {
@@ -66,7 +66,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 是否包含某个子节点
+   * Dom 是否包含某个子节点
    * @param {String} $elem 检测的节点
    * @returns {string} 节点名字
    */
@@ -104,7 +104,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 获取|设置 html
+   * Dom 获取|设置 html
    *
    * @param {String} html 要设置的 html
    * @private
@@ -117,7 +117,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 获取|设置 value
+   * Dom 获取|设置 value
    *
    * @param {String} value 要设置的 value
    * @returns {String} 内容
@@ -127,7 +127,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 设置|获取样式
+   * Dom 设置|获取样式
    *
    * @param {String} params 如果是一位，那么就是获取某个属性
    * @param {Object} params 可以设置多个样式
@@ -167,7 +167,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 设置|获取属性
+   * Dom 设置|获取属性
    *
    * @param {String} params 如果是一位，那么就是获取某个属性
    * @returns {Object} XDOM 对象
@@ -177,7 +177,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 删除属性
+   * Dom 删除属性
    *
    * @param {String} params 删除的属性
    * @returns {Object} XDOM 对象
@@ -187,7 +187,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 添加 class
+   * Dom 添加 class
    *
    * @param {String} name 添加的 class
    * @returns {String} 内容
@@ -204,7 +204,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 删除 class
+   * Dom 删除 class
    *
    * @param {String} name 添加的 class
    * @returns {String} 内容
@@ -221,7 +221,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 包裹某一个元素
+   * Dom 包裹某一个元素
    * @param {String} nodeName 要包裹元素的节点名称
    */
   wrap(nodeName) {
@@ -234,7 +234,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 删除父级元素保留自身
+   * Dom 删除父级元素保留自身
    * 为 blockquote 量身定制
    */
   unwrap() {
@@ -308,7 +308,7 @@ const IDom = class {
       const self = this[0];
       const parent = self.parentNode;
       const childs = parent.childNodes;
-      const $childs = new IDom(childs);
+      const $childs = new Dom(childs);
       let isEqual = false;
       $childs.forEach((cItem) => {
         const index = isEqual ? 'after' : 'before';
@@ -324,16 +324,16 @@ const IDom = class {
   }
 
   /**
-   * IDom 获取第几个元素
+   * Dom 获取第几个元素
    * @param {Number} index 索引
    * @returns {Object} XDOM 对象
    */
   eq(index) {
-    return new IDom(this[index >= this.length ? index % this.length : index]);
+    return new Dom(this[index >= this.length ? index % this.length : index]);
   }
 
   /**
-   * IDom 第一个
+   * Dom 第一个
    * @returns {Object} XDOM 对象
    */
   first() {
@@ -341,7 +341,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 最后一个
+   * Dom 最后一个
    * @returns {Object} XDOM 对象
    */
   last() {
@@ -351,7 +351,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 子节点
+   * Dom 子节点
    * @returns {Object} XDOM 对象
    */
   children(elem) {
@@ -377,11 +377,11 @@ const IDom = class {
         }
       });
     }
-    return new IDom(childs);
+    return new Dom(childs);
   }
 
   /**
-   * IDom 获取父节点
+   * Dom 获取父节点
    * @returns {Object} XDOM 对象
    */
   parent() {
@@ -393,11 +393,11 @@ const IDom = class {
         parents.push(parentNode);
       }
     });
-    return new IDom(parents);
+    return new Dom(parents);
   }
 
   /**
-   * IDom 索引
+   * Dom 索引
    * @returns {Number} 当前索引
    */
   index() {
@@ -412,7 +412,7 @@ const IDom = class {
   }
 
   /**
-   * IDom 绑定事件
+   * Dom 绑定事件
    * @param {string} type 事件类型
    * @param {string|function} selector 代理的选择器|绑定方法
    * @param {function} fn 绑定函数
@@ -468,7 +468,7 @@ $('div').on('click mouserover', () => {
   }
 
   /**
-   * IDom 取消绑定事件
+   * Dom 取消绑定事件
    * @param {string} type 方法类型
    * @param {function} fn 绑定函数
    * @example
@@ -499,4 +499,4 @@ $('p').off(); // 取消所有绑定事件
   }
 };
 
-export default selector => new IDom(selector);
+export default selector => new Dom(selector);

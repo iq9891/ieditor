@@ -1,9 +1,9 @@
 import Base from 'base/base';
 
-class order extends Base {
+class OrderList extends Base {
   constructor(editor) {
     super(editor, 'insertorderedlist');
   }
 }
 
-export default order;
+export default OrderList;

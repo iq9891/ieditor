@@ -3,7 +3,7 @@ import $ from 'shared/dom';
 import Upload from 'shared/upload';
 import imageTem from './image.html';
 
-class Full {
+class Image {
   constructor(editor) {
     this.editor = editor;
     this.$editor = editor.$editor;
@@ -71,4 +71,4 @@ class Full {
   }
 }
 
-export default Full;
+export default Image;

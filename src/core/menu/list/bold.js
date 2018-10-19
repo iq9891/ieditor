@@ -1,9 +1,9 @@
 import Base from 'base/base';
 
-class IBold extends Base {
+class Bold extends Base {
   constructor(editor) {
     super(editor, 'bold', true);
   }
 }
 
-export default IBold;
+export default Bold;

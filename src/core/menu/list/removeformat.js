@@ -1,9 +1,9 @@
 import Base from 'base/base';
 
-class Removeformat extends Base {
+class RemoveFormat extends Base {
   constructor(editor) {
     super(editor, 'removeformat', true);
   }
 }
 
-export default Removeformat;
+export default RemoveFormat;

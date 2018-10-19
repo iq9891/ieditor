@@ -2,7 +2,7 @@ import $ from 'shared/dom';
 import Base from 'base/base';
 import { searchNode } from 'shared/node';
 
-class Formatblock extends Base {
+class FormatBlock extends Base {
   constructor(editor) {
     super(editor, 'formatblock', true);
   }
@@ -64,4 +64,4 @@ class Formatblock extends Base {
   }
 }
 
-export default Formatblock;
+export default FormatBlock;

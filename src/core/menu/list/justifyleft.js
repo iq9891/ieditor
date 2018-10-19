@@ -1,9 +1,9 @@
 import Base from 'base/base';
 
-class Justifyleft extends Base {
+class JustifyLeft extends Base {
   constructor(editor) {
     super(editor, 'justifyleft');
   }
 }
 
-export default Justifyleft;
+export default JustifyLeft;
