@@ -415,16 +415,7 @@ const Dom = class {
    * @param {string} type 事件类型
    * @param {string|function} selector 代理的选择器|绑定方法
    * @param {function} fn 绑定函数
-   * @example
-$('body').on('click', 'div', () => {
-  console.log('事件代理');
-});
-$('div').on('click', () => {
-  console.log('普通事件');
-});
-$('div').on('click mouserover', () => {
-  console.log('普通事件');
-});
+   * @example 参照 jQuery
    * @returns {Object} XDOM 对象
    */
   on(type, selector, fn) {
