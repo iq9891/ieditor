@@ -13,8 +13,8 @@ class Indent extends Base {
     if (code) {
       return;
     }
-    if (selection.isSelectionEmpty()) {
-      const $selectionElem = selection.getSelectionContainerElem();
+    if (selection.isEmpty()) {
+      const $selectionElem = selection.getSelElem();
       const indent = $selectionElem.css('text-indent');
       $selectionElem.css('text-indent', indent === '0px' ? '2em' : '0');
       // 整体检测按钮状态
@@ -27,7 +27,7 @@ class Indent extends Base {
     const { cfg, type, editor } = this;
     const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
     const className = `${cfg.prefix}menu-link-active`;
-    const $selectionElem = editor.selection.getSelectionContainerElem();
+    const $selectionElem = editor.selection.getSelElem();
     let status = false;
 
     if ($selectionElem && $selectionElem.length) {

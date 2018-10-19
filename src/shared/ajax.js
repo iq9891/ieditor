@@ -1,3 +1,5 @@
+import { keys } from './util';
+
 function getError(action, option, xhr) {
   const msg = `fail to post ${action} ${xhr.status}'`;
   const err = new Error(msg);
@@ -30,14 +32,12 @@ export default function ajax(option) {
   const formData = new FormData();
 
   if (option.data) {
-    Object.keys(option.data).map(key => formData.append(key, option.data[key]));
+    keys(option.data).map(key => formData.append(key, option.data[key]));
   }
 
   formData.append(option.filename, option.file);
 
-  xhr.onerror = function error(e) {
-    option.onError(e);
-  };
+  xhr.onerror = option.onError;
 
   xhr.onload = function onload() {
     if (xhr.status < 200 || xhr.status >= 300) {
@@ -52,18 +52,6 @@ export default function ajax(option) {
   if (option.withCredentials && 'withCredentials' in xhr) {
     xhr.withCredentials = true;
   }
-
-  const headers = option.headers || {};
-
-  // if (headers['X-Requested-With'] !== null) {
-  //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  // }
-
-  Object.keys(headers).forEach((item) => {
-    if (Object.prototype.hasOwnProperty.call(headers, item) && headers[item] !== null) {
-      xhr.setRequestHeader(item, headers[item]);
-    }
-  });
 
   xhr.send(formData);
 }

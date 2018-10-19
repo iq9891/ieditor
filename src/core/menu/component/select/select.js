@@ -35,9 +35,12 @@ const Select = class {
   }
 
   bind() {
-    this.$select = $(`#${this.prefix}${this.type}${this.uid}`);
-    this.$list = $(`#${this.prefix}${this.type}${this.uid}+ul`);
-    this.$font = $(`#${this.prefix}${this.type}${this.uid} .${this.prefix}select-btn-font`);
+    const pfix = this.prefix;
+    const dType = this.type;
+    const defUid = this.uid;
+    this.$select = $(`#${pfix}${dType}${defUid}`);
+    this.$list = $(`#${pfix}${dType}${defUid}+ul`);
+    this.$font = $(`#${pfix}${dType}${defUid} .${pfix}select-btn-font`);
 
     this.$select.on('click', (ev = window.event) => {
       this.showList();
@@ -72,10 +75,10 @@ const Select = class {
     // 隐藏菜单
     this.hideList();
     // 设置
-    const $elem = sel.getSelectionContainerElem(sel.getRange());
+    const $elem = sel.getSelElem(sel.getRange());
     if ($elem) {
       // 操作编辑器内容
-      sel.restoreSelection();
+      sel.restore();
       $elem.css(type, html.replace(/"/g, ''));
       editor.menu.testActive();
     }
@@ -84,12 +87,13 @@ const Select = class {
   // 是否是选中
   isActive() {
     const sel = this.editor.selection;
-    const $elem = sel.getSelectionContainerElem(sel.getRange());
+    const $elem = sel.getSelElem(sel.getRange());
     let fontStyle = '';
+    const $dFont = this.$font;
     if ($elem) {
       fontStyle = $elem.css(this.type);
-      if (this.$font) {
-        this.$font.html(fontStyle);
+      if ($dFont) {
+        $dFont.html(fontStyle);
       }
     }
     return fontStyle;

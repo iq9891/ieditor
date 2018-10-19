@@ -55,7 +55,7 @@ class Link extends Base {
 
   click(type, titleVal, urlVal) {
     // 恢复选区，不然添加不上
-    this.editor.selection.restoreSelection();
+    this.editor.selection.restore();
     if (!this.$elem) {
       this.insetLink(titleVal, urlVal);
     } else {
@@ -84,7 +84,7 @@ class Link extends Base {
     let title = sel.getSelectionText();
 
     if (!title) {
-      const $elem = sel.getSelectionContainerElem();
+      const $elem = sel.getSelElem();
       if ($elem && $elem.length && $elem[0].tagName === 'A') {
         this.$elem = $elem;
         title = this.$elem.html();
@@ -98,7 +98,7 @@ class Link extends Base {
     const pfix = this.cfg.prefix;
     const className = `${pfix}menu-link-active`;
     const $item = $(`#${pfix}${this.type}${this.editor.uid}`);
-    const $linkElem = this.editor.selection.getSelectionContainerElem();
+    const $linkElem = this.editor.selection.getSelElem();
     const status = $linkElem && $linkElem.length && $linkElem[0].nodeName === 'A';
     if (status) {
       $item.addClass(className);

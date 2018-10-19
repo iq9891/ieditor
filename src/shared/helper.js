@@ -1,4 +1,4 @@
-import { isArray, isPlainObject } from './util';
+import { isArray, keys, isPlainObject } from './util';
 /**
  * 生成特定的正则表达式
  * @param {string} key 解析模板的某一个 键值对
@@ -11,7 +11,7 @@ export const genReg = (key, flags = '') => new RegExp(`{{\\s?(${key})\\s?}}`, fl
  */
 export const filterNoObjectKey = (obj) => {
   const objIsArray = isArray(obj);
-  const newObj = objIsArray ? obj : Object.keys(obj);
+  const newObj = objIsArray ? obj : keys(obj);
   return newObj.filter(key => !isPlainObject(objIsArray ? key : obj[key]));
 };
 /**

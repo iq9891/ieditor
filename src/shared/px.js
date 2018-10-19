@@ -1,19 +1,18 @@
-import { isString } from './util';
+import { isString, toNumber } from './util';
 /**
- * 解决 px 问题
+ * 添加 px 单位
  *
  * @param {Object} value 处理的字符串
- * @private
- * @example
-   console.log(px(1)); // 1px
-   console.log(px('1')); // 1px
-   console.log(px('#666')); // '#fff'
  * @returns {string} value 新字符串
  */
-export const px = (value) => {
-  const newVal = value - 0;
-  return typeof value === 'number' || (typeof newVal === 'number' && !Number.isNaN(newVal)) ? `${value}px` : value;
-};
+export const px = value => `${toNumber(value)}px`;
+
+/**
+ * 删除 px 单位
+ *
+ * @param {Object} value 处理的字符串
+ * @returns {string} value 新字符串
+ */
 export const delPx = (value) => {
   if (!isString(value)) {
     return value;

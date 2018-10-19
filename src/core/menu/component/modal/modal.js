@@ -1,6 +1,7 @@
 import parser from 'shared/parser';
 import { createElement } from 'shared/node';
 import { delPx } from 'shared/px';
+import { toNumber } from 'shared/util';
 import $ from 'shared/dom';
 import modalTem from './modal.html';
 
@@ -20,15 +21,16 @@ class Modal {
     const { cfg, type, editor } = this;
     const { lang, prefix } = cfg;
     const $newElement = $(createElement('div'));
+    const { uid } = editor;
     $newElement.html(parser(modalTem, {
       lang: lang[type],
       type,
-      uid: editor.uid,
+      uid,
       prefix,
     }));
-    $(`#${prefix}modal${editor.uid}`).append($newElement);
-    this.$modal = $(`#${prefix}${type}-modal${editor.uid}`);
-    this.$content = $(`#${prefix}${type}-modal-content${editor.uid}`);
+    $(`#${prefix}modal${uid}`).append($newElement);
+    this.$modal = $(`#${prefix}${type}-modal${uid}`);
+    this.$content = $(`#${prefix}${type}-modal-content${uid}`);
   }
 
   setContent(html) {
@@ -50,7 +52,7 @@ class Modal {
   show() {
     this.$modal
       .removeClass(`${this.editor.cfg.prefix}modal-hide`)
-      .css('top', Number(delPx(this.$menu.css('height'))) + 1);
+      .css('top', toNumber(delPx(this.$menu.css('height'))) + 1);
   }
 }
 

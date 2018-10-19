@@ -1,12 +1,8 @@
 import $ from './dom';
-/**
-* Selection 对象
-*/
+
 const Selection = class {
   constructor(editor) {
     this.editor = editor;
-    this.$editor = editor.$editor;
-    this.cfg = editor.cfg;
     this.curRange = null;
   }
 
@@ -21,7 +17,7 @@ const Selection = class {
   * 选区的 $Elem
   * @param {Object} rg 当前选区
   */
-  getSelectionContainerElem(rg) {
+  getSelElem(rg) {
     const range = rg || this.curRange;
     let elem;
     if (range) {
@@ -49,7 +45,7 @@ const Selection = class {
     const range = selection.getRangeAt(0);
 
     // 判断选区内容是否在编辑内容之内
-    const $containerElem = this.getSelectionContainerElem(range);
+    const $containerElem = this.getSelElem(range);
     if (!$containerElem) {
       return;
     }
@@ -87,7 +83,7 @@ const Selection = class {
   }
 
   // 选区是否为空
-  isSelectionEmpty() {
+  isEmpty() {
     const range = this.curRange;
     if (range && range.startContainer) {
       if (range.startContainer === range.endContainer) {
@@ -102,7 +98,7 @@ const Selection = class {
   /**
   * 恢复选区
   */
-  restoreSelection() {
+  restore() {
     const selection = window.getSelection();
     if (this.curRange) {
       try {
@@ -158,7 +154,7 @@ const Selection = class {
       document.execCommand(name, false, value);
       // 可以多次操作
       this.saveRange();
-      this.restoreSelection();
+      this.restore();
     }
   }
 };

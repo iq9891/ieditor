@@ -35,8 +35,10 @@ export function searchNode(element, node, callback = () => {}) {
     return true;
   }
 
-  if (element.parentNode) {
-    return searchNode(element.parentNode, node, callback);
+  const { parentNode } = element;
+
+  if (parentNode) {
+    return searchNode(parentNode, node, callback);
   }
 
   return false;

@@ -2,6 +2,7 @@ import {
   genReg,
   filterNoObjectKey,
 } from './helper';
+import { keys } from './util';
 /**
  * 匹配某一个字符串，并替换对应字符串的值
  * @param {string} htmlStr 要匹配的内容
@@ -39,7 +40,7 @@ export const parseLoop = (htmlStr, option) => {
     if (result && result.length > 1) {
       const keyword = result[1].split(' ');
       // 循环的值是否在 option 中
-      const optHasKey = Object.keys(option).find(optKey => optKey === keyword[2]);
+      const optHasKey = keys(option).find(optKey => optKey === keyword[2]);
       // 如果是 'XX in XX'
       if (keyword.length > 1 && optHasKey) {
         const reKey = genReg(keyword[0]);

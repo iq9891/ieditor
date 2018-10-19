@@ -22,8 +22,8 @@ const IEditor = class {
     } else if (isPlainObject(options)) {
       // 处理数据
       this.cfg = resolveOptions(defultConfig, options);
-      const configElem = this.cfg.el;
-      elem = isHtmlArray(configElem) || configElem.indexOf('#') > -1 ? configElem : `#${configElem}`;
+      const { el } = this.cfg;
+      elem = isHtmlArray(el) || el.indexOf('#') > -1 ? el : `#${el}`;
     } else {
       elem = defultConfig.el;
     }

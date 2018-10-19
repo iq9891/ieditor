@@ -28,36 +28,34 @@ import link from './list/link/index';
 import backcolor from './list/backcolor';
 import forecolor from './list/forecolor';
 
-const list = Object.create(null);
+export default {
+  bold,
+  italic,
+  underline,
+  justifycenter,
+  justifyfull,
+  justifyleft,
+  justifyright,
+  inserthorizontalrule,
+  cut,
+  copy,
+  redo,
+  undo,
+  removeformat,
+  insertunorderedlist,
+  insertorderedlist,
 
-list.bold = bold;
-list.italic = italic;
-list.underline = underline;
-list.justifycenter = justifycenter;
-list.justifyfull = justifyfull;
-list.justifyleft = justifyleft;
-list.justifyright = justifyright;
-list.inserthorizontalrule = inserthorizontalrule;
-list.cut = cut;
-list.copy = copy;
-list.redo = redo;
-list.undo = undo;
-list.removeformat = removeformat;
-list.insertunorderedlist = insertunorderedlist;
-list.insertorderedlist = insertorderedlist;
+  fontfamily,
+  fontsize,
+  lineheight,
 
-list.fontfamily = fontfamily;
-list.fontsize = fontsize;
-list.lineheight = lineheight;
-
-list.full = full;
-list.image = image;
-list.formatblock = formatblock;
-list.indent = indent;
-list.code = code;
-list.video = video;
-list.link = link;
-list.backcolor = backcolor;
-list.forecolor = forecolor;
-
-export default list;
+  full,
+  image,
+  formatblock,
+  indent,
+  code,
+  video,
+  link,
+  backcolor,
+  forecolor,
+};

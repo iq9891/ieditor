@@ -40,14 +40,19 @@ const Menu = class {
   // 根据配置渲染创建功能按钮
   renderBtns() {
     let tems = '';
-    this.cfg.menus.forEach((menuType) => {
+    const {
+      prefix,
+      menus,
+    } = this.cfg;
+    const { uid } = this.editor;
+    menus.forEach((menuType) => {
       const menuBtn = new config[menuType](this.editor);
       tems += menuBtn.tem;
       this.btns.push(menuBtn);
       this.clicks[menuType] = menuBtn.click.bind(menuBtn, menuBtn.type);
     });
-    tems += `<div id="${this.cfg.prefix}modal${this.editor.uid}"></div>`;
-    $(`#${this.cfg.prefix}menu${this.editor.uid}`).html(tems);
+    tems += `<div id="${prefix}modal${uid}"></div>`;
+    $(`#${prefix}menu${uid}`).html(tems);
 
     this.btns.forEach((btn) => {
       btn.bind();

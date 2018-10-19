@@ -34,32 +34,29 @@ const IBase = class {
 
   // 点击菜单按钮事件
   click(type) {
-    const { editor } = this;
-    const { selection, code } = editor;
+    const edit = this.editor;
+    const sel = edit.selection;
     // 如果是源代码
-    if (code) {
+    if (edit.code) {
       return;
     }
     // 只有选中了才有效果
-    if (!selection.isSelectionEmpty() || !this.selected) {
+    if (!sel.isEmpty() || !this.selected) {
       // 操作编辑器内容
-      selection.handle(type);
+      sel.handle(type);
       // 整体检测按钮状态
-      editor.menu.testActive();
+      edit.menu.testActive();
     }
   }
 
   // 是否是选中
   isActive() {
-    const { cfg, type, editor } = this;
-    const className = `${cfg.prefix}menu-link-active`;
-    const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
-    const status = document.queryCommandState(type);
-    if (status) {
-      $item.addClass(className);
-    } else {
-      $item.removeClass(className);
-    }
+    const dType = this.type;
+    const cfix = this.cfg.prefix;
+    const className = `${cfix}menu-link-active`;
+    const $item = $(`#${cfix}${dType}${this.editor.uid}`);
+    const status = document.queryCommandState(dType);
+    $item[status ? 'addClass' : 'removeClass'](className);
     return status;
   }
 };

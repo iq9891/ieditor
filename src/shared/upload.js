@@ -1,12 +1,13 @@
 import ajax from 'shared/ajax';
 import $ from 'shared/dom';
+import { keys } from './util';
 
 let imageId = 0;
 
 const inset = (result, self, isImage = true) => {
   const sel = self.editor.selection;
   // 恢复选区，不然添加不上
-  sel.restoreSelection();
+  sel.restore();
   // 网址
   /* eslint-disable */
   const imgPattern = /https?:\/\/.+\.(jpg|gif|png|svg|jpeg)/;
@@ -25,7 +26,7 @@ class Upload {
    * @param {Object} files 文件对象
    */
   static base64(files, self, type = 'image') {
-    Object.keys(files).forEach((file) => {
+    keys(files).forEach((file) => {
       const reader = new FileReader();
       const isImage = type === 'image';
       if (isImage) {

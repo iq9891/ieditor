@@ -14,23 +14,28 @@ class Color extends Base {
   renderModal() {
     const { cfg, type, editor } = this;
     const pfix = cfg.prefix;
-    const defaultText = cfg.placeholder;
+    const {
+      colortitle,
+      colorok,
+      colorclear,
+      colordiy,
+    } = cfg.placeholder;
     const cfgUid = editor.uid;
     this.modal = new Modal(this.editor, type);
 
 
     this.modal.setContent(parser(colorTem, {
-      prefix: cfg.prefix,
+      prefix: pfix,
       type,
-      title: defaultText.colortitle,
+      title: colortitle,
       uid: cfgUid,
-      ok: defaultText.colorok,
-      clear: defaultText.colorclear,
-      diy: defaultText.colordiy,
+      ok: colorok,
+      clear: colorclear,
+      diy: colordiy,
     }));
     this.modal.$modal.addClass(`${pfix}modal-color`);
 
-    $(`#${cfg.prefix}${type}-standard${cfgUid}`).html(this.renderColor(this.getColorList()));
+    $(`#${pfix}${type}-standard${cfgUid}`).html(this.renderColor(this.getColorList()));
   }
 
   renderColor(colorList) {
@@ -69,24 +74,26 @@ class Color extends Base {
 
   bindEvent() {
     const { cfg, type, editor } = this;
+    const { uid } = editor;
+    const { prefix } = cfg;
 
-    const $diy = $(`#${cfg.prefix}${type}-diy${editor.uid}`);
+    const $diy = $(`#${prefix}${type}-diy${uid}`);
 
-    $(`#${cfg.prefix}${type}${editor.uid}`).on('click', () => {
+    $(`#${prefix}${type}${uid}`).on('click', () => {
       this.show();
     });
 
-    $(`.${cfg.prefix}${type}-standard-item${editor.uid}`).on('click', (ev = window.event) => {
+    $(`.${prefix}${type}-standard-item${uid}`).on('click', (ev = window.event) => {
       this.click(type, ev.target.innerHTML);
       this.hide();
     });
 
-    $(`#${cfg.prefix}${type}-ok${editor.uid}`).on('click', () => {
+    $(`#${prefix}${type}-ok${uid}`).on('click', () => {
       this.click(type, `#${$diy.val()}`);
       this.hide();
     });
 
-    $(`#${cfg.prefix}${type}-clear${editor.uid}`).on('click', () => {
+    $(`#${prefix}${type}-clear${uid}`).on('click', () => {
       this.click(type, '#ffffff');
       this.hide();
     });
@@ -103,7 +110,7 @@ class Color extends Base {
   click(type, value) {
     const sel = this.editor.selection;
     // 恢复选区，不然添加不上
-    sel.restoreSelection();
+    sel.restore();
     sel.handle(type, value);
   }
 }

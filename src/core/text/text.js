@@ -127,7 +127,7 @@ const Text = class {
       }
       const { selection } = this.editor;
       // 获取 选区的 $Elem
-      const $selectionElem = selection.getSelectionContainerElem();
+      const $selectionElem = selection.getSelElem();
       if (!$selectionElem) {
         return;
       }

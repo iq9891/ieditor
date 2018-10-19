@@ -50,7 +50,7 @@ class Video extends Base {
       val = `<video controls="${videoCfg.controls}" src="${val}"></video>`;
     }
     // 恢复选区，不然添加不上
-    sel.restoreSelection();
+    sel.restore();
     sel.handle('insertHTML', '<p><br></p>');
     sel.handle('insertHTML', val);
     this.modal.hide();

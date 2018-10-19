@@ -85,6 +85,13 @@ export const def = (obj, key, val) => {
   });
 };
 /**
+ * 转换成数字
+ */
+export const toNumber = (val) => {
+  const num = parseFloat(val);
+  return Number.isNaN(num) ? val : num;
+};
+/**
   * 查找对象上是否有属性
   * @param {object} obj 定义属性的对象
   * @param {string} key 定义的属性
@@ -130,7 +137,7 @@ export const resolveOptions = (oldOptions, newOptions) => {
           options[nOptItemKey] = isHtmlArray(nOptChild) ? nOptChild : copyObject(nOptChild);
         });
         newOpt[newKey] = options;
-      } else if (Array.isArray(nOptItem)) {
+      } else if (isArray(nOptItem)) {
         newOpt[newKey] = nOptItem.slice();
       } else {
         newOpt[newKey] = nOptItem;
