@@ -142,7 +142,7 @@ const Dom = class {
     if (isString(params)) {
       if (value) {
         return forEach(this, (elem) => {
-          elem.style[params] = noUnit(params) || !Number.isNaN(value) ? value : px(value);
+          elem.style[params] = noUnit(params) ? value : px(value);
         });
       }
       if (this.length) {
