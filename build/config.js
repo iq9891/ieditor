@@ -108,6 +108,11 @@ function genConfig (opts) {
       }),
       html({
         include: 'src/**/*.html',
+        htmlMinifierOptions: {
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          conservativeCollapse: true,
+        }
       }),
       buble(),
       alias(aliases),
