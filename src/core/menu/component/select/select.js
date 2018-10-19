@@ -71,7 +71,7 @@ const Select = class {
   listClick(ev) {
     const { type, editor } = this;
     const sel = editor.selection;
-    const html = isString(ev) ? ev : $(ev.target).html();
+    const html = (isString(ev) || typeof ev === 'number') ? ev : $(ev.target).html();
     // 隐藏菜单
     this.hideList();
     // 设置
@@ -79,7 +79,7 @@ const Select = class {
     if ($elem) {
       // 操作编辑器内容
       sel.restore();
-      $elem.css(type, html.replace(/"/g, ''));
+      $elem.css(type, isString(html) ? html.replace(/"/g, '') : html);
       editor.menu.testActive();
     }
   }
