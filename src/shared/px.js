@@ -5,10 +5,10 @@ import { isString, toNumber } from './util';
  * @param {Object} value 处理的字符串
  * @returns {string} value 新字符串
  */
- export const px = (value) => {
-   const newVal = toNumber(value);
-   return typeof value === 'number' || (typeof newVal === 'number' && !Number.isNaN(newVal)) ? `${value}px` : value;
- };
+export const px = (value) => {
+  const newVal = toNumber(value);
+  return typeof value === 'number' || (typeof newVal === 'number' && !Number.isNaN(newVal)) ? `${value}px` : value;
+};
 
 /**
  * 删除 px 单位
