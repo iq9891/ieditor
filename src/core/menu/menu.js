@@ -88,16 +88,19 @@ const Menu = class {
       cfg,
       uid,
       code,
+      readonly,
     } = this.editor;
     const pfix = cfg.prefix;
     const $link = $(`.${pfix}menu-link`);
     const $select = $(`.${pfix}select`);
     const disableLinkName = `${pfix}menu-link-disable`;
     const disableSelectName = `${pfix}select-disable`;
-    if (code) {
+    if (code || readonly) {
       $link.addClass(disableLinkName);
       $select.addClass(disableSelectName);
-      $(`#${pfix}code${uid}`).removeClass(disableLinkName);
+      if (!readonly) {
+        $(`#${pfix}code${uid}`).removeClass(disableLinkName);
+      }
     } else {
       $link.removeClass(disableLinkName);
       $select.removeClass(disableSelectName);

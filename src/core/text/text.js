@@ -108,8 +108,10 @@ const Text = class {
       if (e.keyCode === 9 || e.keyCode === 8) {
         return;
       }
-      const { selection, menu, code } = this.editor;
-      if (!code) {
+      const {
+        selection, menu, code, readonly,
+      } = this.editor;
+      if (!code && !readonly) {
         // 随时保存选区
         selection.saveRange();
         // 更新按钮 ative 状态

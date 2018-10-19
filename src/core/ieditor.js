@@ -27,6 +27,7 @@ const IEditor = class {
     } else {
       elem = defultConfig.el;
     }
+    this.readonly = this.cfg.readonly;
     def(this, '$editor', $(elem));
   }
 
@@ -36,6 +37,10 @@ const IEditor = class {
     def(this, 'text', new Text(this));
     def(this, 'selection', new Selection(this));
     def(this, 'menu', new Menu(this));
+
+    if (this.readonly) {
+      this.setStatus(this.readonly);
+    }
   }
 
   /**
@@ -52,6 +57,20 @@ const IEditor = class {
    */
   setIndex(zIndex = 1) {
     this.$editor.css('zIndex', zIndex);
+  }
+
+  /**
+   * 设置是否只读
+   */
+  setStatus(status = true) {
+    setTimeout(() => {
+      this.readonly = status;
+      this.text.$text.attr('contenteditable', !status);
+      this.menu.testDisable();
+      if (!status) {
+        this.text.cursorEnd();
+      }
+    }, 0);
   }
 };
 

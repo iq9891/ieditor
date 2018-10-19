@@ -108,10 +108,10 @@ class Color extends Base {
   }
 
   click(type, value) {
-    const sel = this.editor.selection;
+    const { selection } = this.editor;
     // 恢复选区，不然添加不上
-    sel.restore();
-    sel.handle(type, value);
+    selection.restore();
+    selection.handle(type, value);
   }
 }
 

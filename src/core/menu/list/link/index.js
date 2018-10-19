@@ -15,10 +15,11 @@ class Link extends Base {
 
   bind() {
     const { cfg, type, editor } = this;
+    const { uid } = editor;
     const pfix = this.prefix;
     const defaultText = cfg.placeholder;
     const cfgDiy = cfg.diy;
-    this.modal = new Modal(this.editor, 'link');
+    this.modal = new Modal(editor, 'link');
     this.modal.setContent(parser(linkTem, {
       prefix: cfg.prefix,
       type,
@@ -31,7 +32,7 @@ class Link extends Base {
       this.$title = $(`${pfix}title`).attr('placeholder', defaultText.linktitle);
       this.$url = $(`${pfix}url`).attr('placeholder', defaultText.linkurl);
       // 点击菜单
-      $(`#${cfg.prefix}${type}${editor.uid}`).on('click', () => {
+      $(`#${cfg.prefix}${type}${uid}`).on('click', () => {
         const linkTitle = this.getTitle();
         // 如果当前已经是在链接上 || 已选内容
         if (linkTitle) {

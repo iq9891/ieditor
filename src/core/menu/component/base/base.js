@@ -36,10 +36,6 @@ const IBase = class {
   click(type) {
     const edit = this.editor;
     const sel = edit.selection;
-    // 如果是源代码
-    if (edit.code) {
-      return;
-    }
     // 只有选中了才有效果
     if (!sel.isEmpty() || !this.selected) {
       // 操作编辑器内容
