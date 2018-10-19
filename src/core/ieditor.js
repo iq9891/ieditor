@@ -24,6 +24,8 @@ const IEditor = class {
       this.cfg = resolveOptions(defultConfig, options);
       const configElem = this.cfg.el;
       elem = isHtmlArray(configElem) || configElem.indexOf('#') > -1 ? configElem : `#${configElem}`;
+    } else {
+      elem = defultConfig.el;
     }
     def(this, '$editor', $(elem));
   }
