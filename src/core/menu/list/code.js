@@ -9,21 +9,27 @@ class Code extends Base {
   bind() {
     const { cfg, type, editor } = this;
     $(`#${cfg.prefix}${type}${editor.uid}`).on('click', () => {
-      if (editor.code) {
-        this.reset();
-      } else {
-        this.sourceCode();
-      }
-      editor.code = !editor.code;
-      editor.menu.testDisable();
-      this.isActive();
+      this.click();
     });
   }
 
   reset() {
-    const $textEle = this.editor.text.$text;
-    $textEle.html($(`#${this.cfg.prefix}text${this.editor.uid} textarea`).val());
-    $textEle.attr('contentEditable', true);
+    const { $text } = this.editor.text;
+    const cfgUid = this.editor.uid;
+    $text.html($(`#${this.editor.cfg.prefix}-source${cfgUid}`).val());
+    $text.attr('contentEditable', true);
+  }
+
+  click() {
+    const { code, menu } = this.editor;
+    if (code) {
+      this.reset();
+    } else {
+      this.sourceCode();
+    }
+    this.editor.code = !this.editor.code;
+    menu.testDisable();
+    this.isActive();
   }
 
   sourceCode() {
@@ -34,9 +40,9 @@ class Code extends Base {
     } = this.cfg;
     const html = $text.html();
     $text.html('');
-    $text.html(`<textarea class="${prefix}code"></textarea>`);
+    $text.html(`<textarea id="${prefix}-source${cfgUid}" class="${prefix}code"></textarea>`);
     $text.attr('contentEditable', false);
-    $(`#${prefix}text${cfgUid} textarea`).html(html);
+    $(`#${prefix}-source${cfgUid}`).html(html);
   }
 
   // 是否是源代码
