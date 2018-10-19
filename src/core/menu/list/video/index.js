@@ -47,7 +47,7 @@ class Video extends Base {
       // 替换 https
       val = val.replace(/http:\/\//g, 'https://');
     } else {
-      val = `<video controls="${videoCfg.controls}" src="${val}"></video>`;
+      val = `<video controls="true" src="${val}"></video>`;
     }
     // 恢复选区，不然添加不上
     sel.restore();

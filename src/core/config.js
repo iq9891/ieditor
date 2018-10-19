@@ -119,7 +119,6 @@ export default {
   },
   video: {
     type: 'iframe', // iframe 是复制视频网站的分享地址，其他格式的都是 video 模式
-    controls: false,
   }, // mp4 || iframe
   placeholder: {
     fontfamily: '字体',
