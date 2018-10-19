@@ -41,9 +41,6 @@ const IBase = class {
       return;
     }
     // 只有选中了才有效果
-    // 'removeformat', 'bold', 'underline', 'italic', 'copy', 'cut', 'redo', 'undo'
-    // 'justifycenter', 'justifyfull', 'justifyleft', 'justifyright'
-    // 'inserthorizontalrule', 'insertorderedlist', 'insertunorderedlist'
     if (!selection.isSelectionEmpty() || !this.selected) {
       // 操作编辑器内容
       selection.handle(type);

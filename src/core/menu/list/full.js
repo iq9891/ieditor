@@ -1,36 +1,11 @@
-import parser from 'shared/parser';
 import $ from 'shared/dom';
-import baseTem from 'base/base.html';
+import Base from 'base/base';
 
-class Full {
+class Full extends Base {
   constructor(editor) {
-    this.editor = editor;
-    this.$editor = editor.$editor;
-    this.cfg = editor.cfg;
-    this.type = 'full';
-    this.typeName = this.type;
+    super(editor, 'full', true);
     this.full = false;
     this.style = null;
-    // 初始化
-    this.create();
-  }
-
-  create() {
-    const { cfg, type, editor } = this;
-    const { lang, prefix } = cfg;
-    this.tem = parser(baseTem, {
-      lang: lang[type],
-      type,
-      uid: editor.uid,
-      prefix,
-    });
-  }
-
-  bind() {
-    const { cfg, type, editor } = this;
-    $(`#${cfg.prefix}${type}${editor.uid}`).on('click', () => {
-      this.click(type);
-    });
   }
 
   click() {
@@ -44,17 +19,6 @@ class Full {
     this.full = !this.full;
     // 整体检测按钮状态
     this.editor.menu.testActive();
-  }
-
-  isActive() {
-    const { cfg, type, editor } = this;
-    const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
-    if (this.full) {
-      $item.addClass(`${cfg.prefix}menu-link-active`);
-    } else {
-      $item.removeClass(`${cfg.prefix}menu-link-active`);
-    }
-    return this.full;
   }
 
   createCode() {
@@ -83,6 +47,17 @@ class Full {
   bacStyle() {
     const { $editor } = this.editor;
     this.style = $editor.attr('style');
+  }
+
+  isActive() {
+    const { cfg, type, editor } = this;
+    const $item = $(`#${cfg.prefix}${type}${editor.uid}`);
+    if (this.full) {
+      $item.addClass(`${cfg.prefix}menu-link-active`);
+    } else {
+      $item.removeClass(`${cfg.prefix}menu-link-active`);
+    }
+    return this.full;
   }
 }
 

@@ -19,18 +19,14 @@ import fontsize from './list/fontsize';
 import lineheight from './list/lineheight';
 
 import full from './list/full';
-import image from './list/image';
+import image from './list/image/index';
 import formatblock from './list/formatblock';
 import indent from './list/indent';
 import code from './list/code';
-import video from './list/video';
-import link from './list/link';
+import video from './list/video/index';
+import link from './list/link/index';
 import backcolor from './list/backcolor';
 import forecolor from './list/forecolor';
-// import table from './list/table';
-// import paste from './list/paste';
-// import plainpaste from './list/plainpaste';
-// import wordpaste from './list/wordpaste';
 
 const list = Object.create(null);
 
@@ -63,9 +59,5 @@ list.video = video;
 list.link = link;
 list.backcolor = backcolor;
 list.forecolor = forecolor;
-// list.table = table;
-// list.paste = paste;
-// list.plainpaste = plainpaste;
-// list.wordpaste = wordpaste;
 
 export default list;
