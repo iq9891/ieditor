@@ -1,6 +1,6 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import { hasOwn, } from 'shared/util';
+import { hasOwn } from 'shared/util';
 import config from './config';
 import menuTem from './index.html';
 

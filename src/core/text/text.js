@@ -1,6 +1,6 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import { hasOwn, } from 'shared/util';
+import { hasOwn } from 'shared/util';
 import textTem from './text.html';
 
 const Text = class {
