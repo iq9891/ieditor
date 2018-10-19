@@ -53,6 +53,16 @@ const Text = class {
 
   // 绑定事件
   bind() {
+    const {
+      editor,
+      prefix,
+      resetDown,
+    } = this;
+
+    const {
+      uid,
+      cfg,
+    } = editor;
     // 实时保存选取
     this.saveRangeRealTime();
     // 处理 tab 键
@@ -60,11 +70,11 @@ const Text = class {
     // 清空之后
     this.empty();
 
-    const $reset = $(`#${this.prefix}reset${this.editor.uid}`);
+    const $reset = $(`#${prefix}reset${uid}`);
 
-    if (this.editor.cfg.reset) {
-      $reset.on('mousedown', this.resetDown.bind(this));
-      $reset.parent().css('display', 'block');
+    if (cfg.reset) {
+      $reset.on('mousedown', resetDown.bind(this));
+      $reset.parent().removeClass(`${prefix}reset-hide`);
     }
   }
 
