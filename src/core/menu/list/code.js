@@ -34,7 +34,7 @@ class Code extends Base {
     } = this.cfg;
     const html = $text.html();
     $text.html('');
-    $text.html(`<textarea id="${prefix}code${cfgUid}" class="${prefix}code"></textarea>`);
+    $text.html(`<textarea class="${prefix}code"></textarea>`);
     $text.attr('contentEditable', false);
     $(`#${prefix}text${cfgUid} textarea`).html(html);
   }
