@@ -49,7 +49,7 @@ $input-size: $handle-size - 21;
       display: block;
       padding: 8px;
       position: absolute;
-      right: 4px;
+      right: 10px;
       top: 6px;
       width: 2px;
       height: 2px;
@@ -69,7 +69,7 @@ $input-size: $handle-size - 21;
     height: 30px;
     line-height: 30px;
     font-size: 14px;
-    padding: 0 8px;
+    padding: 0 10px;
     display: flex;
     border-bottom: 1px solid $border-color;
     color: $color;
@@ -80,36 +80,10 @@ $input-size: $handle-size - 21;
     padding: 10px;
   }
 
-  &-width {
-    margin: 0 0 8px;
-    padding: 0 28px 0 8px;
-    width: calc(100% - 36px);
-  }
-
-  &-url {
-    margin: 0 0 8px;
-
-    &-box {
-      position: relative;
-    }
-
-    &-symbol {
-      position: absolute;
-      right: 8px;
-      top: 8px;
-      font-size: 14px;
-      color: $color;
-    }
-  }
-
-  &-btn {
-    cursor: pointer;
-
-    &-box {
-      display: flex;
-      justify-content: flex-end;
-      padding: 8px 0 0;
-    }
+  &-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 0 0;
   }
 
   &-standard {

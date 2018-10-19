@@ -21,8 +21,9 @@
   height: 16px;
   line-height: 14px;
   font-size: 14px;
-  padding: 8px;
+  padding: 4px 8px;
   color: $color;
+  cursor: pointer;
 
   &:focus {
     outline: none;

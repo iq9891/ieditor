@@ -1,12 +1,7 @@
 .#{$prefix}icon {
   width: 16px;
   height: 16px;
-  font-style: normal;
-  line-height: 16px;
-  text-align: center;
   border-radius: 0;
-  font-weight: bold;
-  font-size: 16px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -15,8 +10,17 @@
     &-#{$icon} {
       background-image: url(icon/#{$icon}.svg);
     }
-
-    .#{$prefix}menu-link-disable &-#{$icon} {
+    // 菜单 icon 鼠标经过，菜单操作效果
+    .#{$prefix}menu-link:active &-#{$icon},
+    .#{$prefix}menu-link:hover &-#{$icon},
+    .#{$prefix}menu-link-active &-#{$icon},
+    .#{$prefix}menu-link-active:hover &-#{$icon} {
+      background-image: url(icon/#{$icon}-on.svg);
+    }
+    // 菜单不可用
+    .#{$prefix}menu-link-disable &-#{$icon},
+    .#{$prefix}menu-link-disable:active &-#{$icon},
+    .#{$prefix}menu-link-disable:hover &-#{$icon} {
       background-image: url(icon/#{$icon}-disable.svg);
     }
   }

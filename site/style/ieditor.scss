@@ -30,6 +30,7 @@
     box-sizing: content-box !important;
   }
 
+  // 修改编辑器大小 start
   &-reset {
     background: $menu-color;
     border: 1px solid $border-color;
@@ -58,7 +59,9 @@
       }
     }
   }
+  // 修改编辑器大小 end
 
+  // 源代码 start
   &-code {
     resize: none;
     width: calc(100% - 32px);
@@ -74,4 +77,5 @@
       outline: none;
     }
   }
+  // 源代码 end
 }

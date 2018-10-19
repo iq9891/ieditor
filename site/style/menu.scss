@@ -9,15 +9,6 @@
     padding: 8px;
     position: relative;
     overflow: hidden;
-    // 菜单 icon 鼠标经过，菜单操作效果
-    @each $icon in $icons {
-      &:active .#{$prefix}icon-#{$icon},
-      &:hover .#{$prefix}icon-#{$icon},
-      &-active .#{$prefix}icon-#{$icon},
-      &-active:hover .#{$prefix}icon-#{$icon} {
-        background-image: url(icon/#{$icon}-on.svg);
-      }
-    }
 
     &:focus {
       outline: none;
@@ -25,6 +16,10 @@
 
     &:hover {
       text-decoration: none !important;
+    }
+
+    &-disable {
+      cursor: no-drop;
     }
   }
 
