@@ -6,6 +6,7 @@ out
 *.diff
 .tags*
 *.patch
+docs/
 *.bak
 .DS_Store
 node_modules/
