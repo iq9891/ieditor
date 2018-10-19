@@ -1,5 +1,14 @@
-# 简单使用
-> Vue.js 2.x 示例
+# 快速上手
+> Vue.js 2.x 在全家桶中的示例
+
+## 功能
+
+1. 图片支持 base64
+2. 视频支持各种格式，编辑器内容支持手机端渲染
+3. 定制化编辑器
+4. 样式完全独立可修改
+
+## 简单使用
 
 <div id="ied" class="ied" ref="ied"></div>
 
@@ -10,85 +19,28 @@ export default {
   mounted() {
     const edit = new IEditor(this.$refs.ied);
     edit.init();
-    console.log(edit, 'IEditor');
   }
 };
 </script>
 
-<!-- <div>
-  <p>
-    <input type="file" @change="changeFile">
-    <button @click="boldFn">加粗{{activeDatas.bold}}</button>
-    <select @change="fontsizeFn" v-model="activeDatas.fontsize">
-      <option value="false">选择字号</option>
-      <option :value="slist" v-for="(slist, index) in sizeList" :key="index">{{slist}}</option>
-    </select>
-  </p>
-  <p>
-  </p>
-  <div ref="text" contenteditable="true" class="diy-text"></div>
-</div>
+## 示例代码
 
-<script>
-import IEditor from '../src/core/ieditor';
+```html
+<div id="ied" class="ied" ref="ied"></div>
+```
 
+```js
 export default {
-  data() {
-    return {
-      sizeList: ['20px', '30px'],
-      activeDatas: {
-        fontsize: false,
-        bold: false,
-      },
-    };
-  },
+  // 略去其他代码
   mounted() {
-    // const edit = new IEditor(this.$refs.ied);
-    this.edit = new IEditor({
-      // el: this.$refs.ied,
-      diy: {
-        menu: true,
-        text: this.$refs.text,
-        active: result => {
-          this.handleActive(result);
-        },
-      },
-    });
-
-    this.edit.init();
-  },
-  methods: {
-    handleActive(result) {
-      Object.keys(result).forEach(resultKey => {
-        let oneActive = result[resultKey];
-        if (resultKey === 'fontsize') {
-          oneActive = this.sizeList.indexOf(result[resultKey]) > -1 ? result[resultKey] : false;
-        }
-        Object.assign(this.activeDatas, {
-          [resultKey]: oneActive
-        });
-      });
-    },
-    boldFn() {
-      this.edit.menu.clicks.bold();
-    },
-    fontsizeFn(ev) {
-      this.edit.menu.clicks.fontsize(ev.target.value);
-    },
-    changeFile(ev) {
-      this.edit.menu.clicks.image(ev);
-    },
-  },
+    const edit = new IEditor(this.$refs.ied);
+    edit.init();
+  }
+  // 略去其他代码
 };
-</script> -->
+```
 
 <style lang="scss">
 // IEditor 样式
 @import './style/ieditor.scss';
-
-.diy-text {
-  border: 2px solid #1996f9;
-  height: 200px;
-  overflow: auto;
-}
 </style>

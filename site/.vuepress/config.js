@@ -40,5 +40,15 @@ module.exports = {
     repo: 'iq9891/ieditor',
     searchMaxSuggestions: 5,
     docsDir: 'site',
-  }
+    sidebar: [
+      '/introduction',
+      '/config',
+      '/readonly',
+      '/reset',
+      '/color',
+      '/i18n',
+      '/video',
+      'diy',
+    ],
+  },
 }
