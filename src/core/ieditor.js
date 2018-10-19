@@ -37,6 +37,22 @@ const IEditor = class {
     def(this, 'selection', new Selection(this));
     def(this, 'menu', new Menu(this));
   }
+
+  /**
+  * 新建一行 <p><br/></p>
+  * @param {String} html 内容
+  */
+  setHtml(html = '<p><br/></p>') {
+    this.text.$text.html(html);
+    this.text.cursorEnd();
+  }
+
+  /**
+   * 设置层级
+   */
+  setIndex(zIndex = 1) {
+    this.$editor.css('zIndex', zIndex);
+  }
 };
 
 export default IEditor;
