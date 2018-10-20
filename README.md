@@ -28,8 +28,8 @@
 - CDN
   - [unpkg](https://unpkg.com/@iq9891/ieditor)
   - [jsdelivr](https://cdn.jsdelivr.net/npm/@iq9891/ieditor@latest/dist/)
-- [各版本下载 https://github.com/@iq9891/ieditor/releases](https://github.com/@iq9891/ieditor/releases)
-- [更新记录](https://github.com/@iq9891/ieditor/blob/master/changelog.md)
+- [各版本下载 https://github.com/iq9891/ieditor/releases](https://github.com/iq9891/ieditor/releases)
+- [更新记录](https://github.com/iq9891/ieditor/blob/master/changelog.md)
 
 ## 使用
 
