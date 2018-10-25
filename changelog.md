@@ -1,3 +1,13 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/iq9891/ieditor/compare/v0.2.0...v0.2.1) (2018-10-25)
+
+
+### Bug Fixes
+
+* **$image:** solve the problem of uploading errors when base64 ([e6a5a1a](https://github.com/iq9891/ieditor/commit/e6a5a1a))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/iq9891/ieditor/compare/v0.1.3...v0.2.0) (2018-10-25)
 
