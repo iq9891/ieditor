@@ -19,6 +19,9 @@ export default {
   mounted() {
     this.edit = new IEditor({
       el: this.$refs.ied,
+      placeholder: {
+        videotitle: 'https://',
+      },
       video: {
          // iframe 是复制视频网站的分享地址，其他格式的都是 video 模式
         type: 'mp4',
@@ -37,10 +40,12 @@ export default {
   mounted() {
     this.edit = new IEditor({
       el: this.$refs.ied,
+      placeholder: {
+        videotitle: 'https://',
+      },
       video: {
          // iframe 是复制视频网站的分享地址，其他格式的都是 video 模式
         type: 'mp4',
-        controls: true,
       },
     });
     this.edit.init();
