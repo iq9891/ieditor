@@ -60,3 +60,7 @@
 - 进入目录，安装依赖包 cd ieditor && yarn install
 - 安装包完成之后，运行 `npm start` 。
 - 打开浏览器 [http://localhost:8080/](http://localhost:8080/)
+
+
+## 更新日志
+请移步 [更新日志](https://github.com/iq9891/ieditor/blob/master/changelog.md) 。

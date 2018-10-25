@@ -1,3 +1,18 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/iq9891/ieditor/compare/v0.1.3...v0.2.0) (2018-10-25)
+
+
+### Features
+
+* **$handle:** do not select the text to change the cursor and the operation of the next new text ([84e6433](https://github.com/iq9891/ieditor/commit/84e6433))
+
+
+
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/iq9891/ieditor/compare/v0.1.2...v0.1.3) (2018-10-20)
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/iq9891/ieditor/compare/v0.1.1...v0.1.2) (2018-10-20)
 
