@@ -111,7 +111,7 @@ class Color extends Base {
     const { selection, undo } = this.editor;
     if (selection.isEmpty()) {
       const $selElem = selection.getSelElem();
-      const attr = type === 'backcolor' ? 'background': 'color';
+      const attr = type === 'backcolor' ? 'background' : 'color';
       selection.createRangeByElem($selElem);
       selection.handle('insertHTML', `<span style="${attr}: ${value}">&#8203;</span>`);
     } else {

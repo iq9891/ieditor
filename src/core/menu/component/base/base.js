@@ -37,7 +37,7 @@ const IBase = class {
   click(type) {
     const edit = this.editor;
     const sel = edit.selection;
-    const nodeName = this.nodeName;
+    const node = this.nodeName;
     // 只有选中了才有效果
     if (!sel.isEmpty() || !this.selected) {
       edit.undo.push(edit.getHtml());
@@ -45,10 +45,10 @@ const IBase = class {
       sel.handle(type);
       // 整体检测按钮状态
       edit.menu.testActive();
-    } else if (nodeName) {
+    } else if (node) {
       const $selElem = sel.getSelElem();
       sel.createRangeByElem($selElem);
-      sel.handle('insertHTML', `<${nodeName}>&#8203;</${nodeName}>`);
+      sel.handle('insertHTML', `<${node}>&#8203;</${node}>`);
     }
   }
 
