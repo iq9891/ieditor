@@ -109,10 +109,17 @@ class Color extends Base {
 
   click(type, value) {
     const { selection, undo } = this.editor;
-    // 恢复选区，不然添加不上
-    selection.restore();
-    undo.push(this.editor.getHtml());
-    selection.handle(type, value);
+    if (selection.isEmpty()) {
+      const $selElem = selection.getSelElem();
+      const attr = type === 'backcolor' ? 'background': 'color';
+      selection.createRangeByElem($selElem);
+      selection.handle('insertHTML', `<span style="${attr}: ${value}">&#8203;</span>`);
+    } else {
+      // 恢复选区，不然添加不上
+      selection.restore();
+      undo.push(this.editor.getHtml());
+      selection.handle(type, value);
+    }
   }
 }
 

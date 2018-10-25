@@ -2,7 +2,7 @@ import Base from 'base/base';
 
 class Underline extends Base {
   constructor(editor) {
-    super(editor, 'underline', true);
+    super(editor, 'underline', true, 'u');
   }
 }
 
