@@ -38,6 +38,7 @@ const IBase = class {
     const sel = edit.selection;
     // 只有选中了才有效果
     if (!sel.isEmpty() || !this.selected) {
+      edit.undo.push(edit.getHtml());
       // 操作编辑器内容
       sel.handle(type);
       // 整体检测按钮状态

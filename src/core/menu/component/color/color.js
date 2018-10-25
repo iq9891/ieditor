@@ -108,9 +108,10 @@ class Color extends Base {
   }
 
   click(type, value) {
-    const { selection } = this.editor;
+    const { selection, undo } = this.editor;
     // 恢复选区，不然添加不上
     selection.restore();
+    undo.push(this.editor.getHtml());
     selection.handle(type, value);
   }
 }

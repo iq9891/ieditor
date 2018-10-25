@@ -8,7 +8,8 @@ class Indent extends Base {
 
   // 点击菜单按钮事件
   click() {
-    const { selection, code, menu } = this.editor;
+    const edit = this.editor;
+    const { selection, code, menu } = edit;
     // 如果是源代码
     if (code) {
       return;
@@ -16,6 +17,7 @@ class Indent extends Base {
     if (selection.isEmpty()) {
       const $selectionElem = selection.getSelElem();
       const indent = $selectionElem.css('text-indent');
+      edit.undo.push(edit.getHtml());
       $selectionElem.css('text-indent', indent === '0px' ? '2em' : '0');
       // 整体检测按钮状态
       menu.testActive();

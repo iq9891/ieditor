@@ -55,14 +55,16 @@ class Link extends Base {
   }
 
   click(type, titleVal, urlVal) {
+    const edit = this.editor;
     // 恢复选区，不然添加不上
-    this.editor.selection.restore();
+    edit.selection.restore();
+    edit.undo.push(edit.getHtml());
     if (!this.$elem) {
       this.insetLink(titleVal, urlVal);
     } else {
       this.modifyLink(titleVal, urlVal);
     }
-    this.editor.menu.testActive();
+    edit.menu.testActive();
     this.modal.hide();
     this.$elem = null;
   }

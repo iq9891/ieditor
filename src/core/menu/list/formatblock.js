@@ -15,6 +15,7 @@ class FormatBlock extends Base {
       const blocked = searchNode($selectionElem[0], 'BLOCKQUOTE');
       // 如果当前没选中
       if (sel.isEmpty()) {
+        this.editor.undo.push(this.editor.getHtml());
         if (blocked) {
           this.deleteBlockquote();
         } else {

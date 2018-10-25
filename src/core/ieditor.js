@@ -16,6 +16,8 @@ const IEditor = class {
   constructor(options) {
     this.cfg = defultConfig;
     this.code = false;
+    this.redo = [];
+    this.undo = [];
     let elem = '';
     if (isHtmlArray(options)) {
       elem = options;
@@ -44,12 +46,20 @@ const IEditor = class {
   }
 
   /**
-  * 新建一行 <p><br/></p>
+  * 设置编辑器内容
   * @param {String} html 内容
   */
   setHtml(html = '<p><br/></p>') {
     this.text.$text.html(html);
     this.text.cursorEnd();
+  }
+
+  /**
+  * 获取编辑器内容
+  * @return {String} 内容
+  */
+  getHtml() {
+    return this.text.$text.html();
   }
 
   /**

@@ -35,6 +35,7 @@ class Image {
   }
 
   click(type, ev) {
+    this.editor.undo.push(this.editor.getHtml());
     this.handleFiles(ev.target.files, this);
   }
 

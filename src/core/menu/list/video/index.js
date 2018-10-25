@@ -39,7 +39,8 @@ class Video extends Base {
 
   click(type, urlVal) {
     let val = urlVal;
-    const sel = this.editor.selection;
+    const edit = this.editor;
+    const sel = edit.selection;
     const videoCfg = this.cfg.video;
     if (videoCfg.type === 'iframe') {
       // 删除宽高
@@ -49,6 +50,7 @@ class Video extends Base {
     } else {
       val = `<video controls="true" src="${val}"></video>`;
     }
+    edit.undo.push(edit.getHtml());
     // 恢复选区，不然添加不上
     sel.restore();
     sel.handle('insertHTML', '<p><br></p>');

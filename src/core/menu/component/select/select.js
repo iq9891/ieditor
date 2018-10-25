@@ -79,6 +79,8 @@ const Select = class {
     if ($elem) {
       // 操作编辑器内容
       sel.restore();
+
+      editor.undo.push(editor.getHtml());
       $elem.css(type, isString(html) ? html.replace(/"/g, '') : html);
       editor.menu.testActive();
     }

@@ -5,8 +5,7 @@ import {
   isUndefined,
   keys,
 } from './util';
-import { noUnit } from './helper';
-import { px, delPx } from './px';
+import { px } from './px';
 import {
   delEvt,
   addEvt,
@@ -139,28 +138,18 @@ const Dom = class {
    * @returns {Object} XDOM 对象
    */
   css(params, value) {
-    if (isString(params)) {
+    if (typeof params === 'string') {
       if (value) {
-        return forEach(this, (elem) => {
-          elem.style[params] = noUnit(params) ? value : px(value);
+        return this.forEach((elem) => {
+          console.log(params === 'zIndex' ? value : px(value), params, 8888);
+          elem.style[params] = params === 'line-height' || params === 'font-size' || params === 'text-indent' ? value : px(value);
         });
       }
-      if (this.length) {
-        if (params === 'line-height') {
-          const lineHeight = delPx(getStyle(this[0])[params]);
-          const fontSize = delPx(getStyle(this[0])['font-size']);
-          if (lineHeight === 'normal') {
-            return '';
-          }
-          return String(lineHeight / fontSize);
-        }
-        return getStyle(this[0])[params];
-      }
-      return this;
+      return getStyle(this[0])[params];
     }
-    return forEach(this, (elem) => {
-      forEach(keys(params), (paramsKey) => {
-        elem.style[paramsKey] = noUnit(paramsKey) ? params[paramsKey] : px(params[paramsKey]);
+    return this.forEach((elem) => {
+      Object.keys(params).forEach((paramsKey) => {
+        elem.style[paramsKey] = paramsKey === 'zIndex' || paramsKey === 'text-indent' ? params[paramsKey] : px(params[paramsKey]);
       });
     });
   }
