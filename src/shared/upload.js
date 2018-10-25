@@ -34,8 +34,11 @@ class Upload {
       } else {
         reader.readAsText(files[file]);
       }
+      const $image = inset(reader.result, self, isImage);
       reader.onload = () => {
-        inset(reader.result, self, isImage);
+        if ($image) {
+          $image.attr('src', reader.result);
+        }
       };
     });
   }

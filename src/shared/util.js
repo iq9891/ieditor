@@ -136,7 +136,8 @@ export const resolveOptions = (oldOptions, newOptions) => {
           const nOptChild = nOptItem[nOptItemKey];
           options[nOptItemKey] = isHtmlArray(nOptChild) ? nOptChild : copyObject(nOptChild);
         });
-        newOpt[newKey] = options;
+        // 修复 只修改图片 type 参数的时候集成的问题
+        newOpt[newKey] = Object.assign({}, newOpt[newKey], options);
       } else if (isArray(nOptItem)) {
         newOpt[newKey] = nOptItem.slice();
       } else {

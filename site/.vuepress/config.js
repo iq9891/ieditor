@@ -46,6 +46,7 @@ module.exports = {
       '/readonly',
       '/reset',
       '/color',
+      '/base64',
       '/i18n',
       '/video',
       'diy',
