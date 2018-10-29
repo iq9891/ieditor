@@ -232,10 +232,25 @@ const Dom = class {
   wrap(nodeName) {
     if (this.length) {
       const self = this[0];
-      const newHtml = document.createElement(nodeName);
-      self.parentNode.insertBefore(newHtml, self);
-      newHtml.appendChild(self);
-      return new Dom(newHtml);
+      let newElem = null;
+      const parent = self.parentNode;
+      // 处理 列表情况的时候
+      if (self.nodeName === 'LI') {
+        newElem = document.createElement(nodeName);
+        const parList = document.createElement(parent.nodeName);
+        parent.parentNode.insertBefore(newElem, parent);
+        parList.appendChild(self);
+        newElem.appendChild(parList);
+        // 如果不存子节点就删除
+        if (!parent.children.length) {
+          parent.parentNode.removeChild(parent);
+        }
+      } else {
+        newElem = document.createElement(nodeName);
+        parent.insertBefore(newElem, self);
+        newElem.appendChild(self);
+      }
+      return new Dom(newElem);
     }
     return null;
   }
@@ -246,10 +261,17 @@ const Dom = class {
    */
   unwrap() {
     if (this.length) {
-      const self = this[0];
-      const parent = self.parentNode;
-      const childs = parent.childNodes;
-      const grandpa = parent.parentNode;
+      let self = this[0];
+      let parent = self.parentNode;
+      let childs = parent.childNodes;
+      let grandpa = parent.parentNode;
+      // 如果是 ol 或 ul
+      if (self.nodeName === 'LI') {
+        self = this[0].parentNode;
+        parent = self.parentNode;
+        grandpa = parent.parentNode;
+        childs = parent.childNodes;
+      }
       if (childs.length === 1) {
         grandpa.insertBefore(self.cloneNode(true), parent);
         parent.removeChild(self);

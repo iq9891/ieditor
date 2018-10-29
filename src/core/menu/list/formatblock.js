@@ -8,21 +8,28 @@ class FormatBlock extends Base {
   }
 
   click() {
-    const sel = this.editor.selection;
+    const edit = this.editor;
+    const sel = edit.selection;
+    // 处理选中的时候默认操作最后一个
+    if (!sel.isEmpty()) {
+      edit.text.cursorEnd();
+      sel.delRange();
+      sel.restore();
+    }
     const $selectionElem = sel.getSelElem();
     // 如果选区容器存在，并且不是 文本容器 的情况下
     if ($selectionElem && $selectionElem.length > 0 && !$selectionElem.attr('id')) {
       const blocked = searchNode($selectionElem[0], 'BLOCKQUOTE');
       // 如果当前没选中
       if (sel.isEmpty()) {
-        this.editor.undo.push(this.editor.getHtml());
+        edit.undo.push(edit.getHtml());
         if (blocked) {
           this.deleteBlockquote();
         } else {
           this.createBlockquote();
         }
         // 整体检测按钮状态
-        this.editor.menu.testActive();
+        edit.menu.testActive();
       }
     }
   }

@@ -118,6 +118,18 @@ const Selection = class {
   restore() {
     const selection = window.getSelection();
     if (this.curRange) {
+      this.delRange();
+      // 恢复保存的范围
+      selection.addRange(this.curRange);
+    }
+  }
+
+  /**
+  * 清空选区
+  */
+  delRange() {
+    const selection = window.getSelection();
+    if (this.curRange) {
       try {
         // 清空所有Range对象
         selection.removeAllRanges();
@@ -126,8 +138,6 @@ const Selection = class {
         document.body.createTextRange().select();
         document.selection.empty();
       }
-      // 恢复保存的范围
-      selection.addRange(this.curRange);
     }
   }
 
