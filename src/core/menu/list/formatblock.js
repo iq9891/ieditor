@@ -31,7 +31,7 @@ class FormatBlock extends Base {
     const sel = this.editor.selection;
     const $selElem = sel.getSelElem();
     sel.createRangeByElem($selElem.wrap('blockquote'));
-    sel.handle('insertHTML', `&#8203;`);
+    sel.handle('insertHTML', '&#8203;');
     // 随时保存选区
     sel.saveRange();
     sel.restore();
@@ -41,7 +41,7 @@ class FormatBlock extends Base {
     const sel = this.editor.selection;
     const $selElem = sel.getSelElem();
     $selElem.unwrap();
-    sel.handle('insertHTML', `&#8203;`);
+    sel.handle('insertHTML', '&#8203;');
     // 随时保存选区
     sel.saveRange();
     sel.restore();
