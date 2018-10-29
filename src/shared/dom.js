@@ -1,4 +1,5 @@
 import getStyle from 'shared/getStyle';
+import { searchNode } from 'shared/node';
 import {
   isString,
   forEach,
@@ -245,10 +246,17 @@ const Dom = class {
         if (!parent.children.length) {
           parent.parentNode.removeChild(parent);
         }
-      } else {
+      } else if (self.nodeName === 'P') {
         newElem = document.createElement(nodeName);
         parent.insertBefore(newElem, self);
         newElem.appendChild(self);
+      } else {
+        // 如果当前光标不是在 p 标签中
+        searchNode(self, 'P', (elem) => {
+          newElem = document.createElement(nodeName);
+          elem.parentNode.insertBefore(newElem, elem);
+          newElem.appendChild(elem);
+        });
       }
       return new Dom(newElem);
     }
@@ -265,6 +273,16 @@ const Dom = class {
       let parent = self.parentNode;
       let childs = parent.childNodes;
       let grandpa = parent.parentNode;
+
+      // 如果顶级是 text 并且当前只是引用了元素了
+      // 复现步骤： 1. 点击排序，2. 恢复排序，3. 点击两次引用，4. 点击第一行然后再点击引用
+      if (self.nodeName === 'BLOCKQUOTE') {
+        self.childNodes.forEach((ele) => {
+          parent.insertBefore(ele, self);
+        });
+        parent.removeChild(self);
+        return;
+      }
       // 如果是 ol 或 ul
       if (self.nodeName === 'LI') {
         self = this[0].parentNode;
