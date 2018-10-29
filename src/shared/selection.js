@@ -1,3 +1,4 @@
+import { searchNode } from 'shared/node';
 import $ from './dom';
 
 const Selection = class {
@@ -25,6 +26,22 @@ const Selection = class {
       return $(elem.nodeType === 1 ? elem : elem.parentNode);
     }
     return null;
+  }
+
+  /**
+  * 选区的 $Elem
+  * @param {Object} rg 当前选区
+  */
+  getSelElemAll(rg, callback) {
+    const range = rg || this.curRange;
+    if (range) {
+      searchNode(range.startContainer.parentNode, 'P', (eleStart) => {
+        searchNode(range.endContainer.parentNode, 'P', (eleEnd) => {
+          callback($(eleStart, eleEnd));
+        });
+      });
+    }
+    return callback({ length: 0 });
   }
 
   /**

@@ -75,15 +75,16 @@ const Select = class {
     // 隐藏菜单
     this.hideList();
     // 设置
-    const $elem = sel.getSelElem(sel.getRange());
-    if ($elem) {
-      // 操作编辑器内容
-      sel.restore();
+    sel.getSelElemAll(sel.getRange(), ($elem) => {
+      if ($elem.length) {
+        // 操作编辑器内容
+        sel.restore();
 
-      editor.undo.push(editor.getHtml());
-      $elem.css(type, isString(html) ? html.replace(/"/g, '') : html);
-      editor.menu.testActive();
-    }
+        editor.undo.push(editor.getHtml());
+        $elem.css(type, isString(html) ? html.replace(/"/g, '') : html);
+        editor.menu.testActive();
+      }
+    });
   }
 
   // 是否是选中

@@ -22,8 +22,14 @@ import { getDomId } from './parsedom';
 const events = {};
 
 const Dom = class {
-  constructor(selector) {
+  constructor(selector, endSelector) {
     this.length = 0;
+    if (endSelector && selector !== endSelector) {
+      const nodes = [selector];
+      this.getMiddleNodes(nodes, selector, endSelector);
+      nodes.push(endSelector);
+      return this.$init(nodes);
+    }
     return this.$init(selector);
   }
 
@@ -53,6 +59,18 @@ const Dom = class {
       this[elIndex] = el;
     });
     return this;
+  }
+
+  /**
+   * Dom 获取节点名字
+   * @returns {string} 节点名字
+   */
+  getMiddleNodes(nodes, selector, endSelector) {
+    const next = selector.nextSibling;
+    if (next && next !== endSelector) {
+      nodes.push(next);
+      this.getMiddleNodes(nodes, next, endSelector);
+    }
   }
 
   /**
@@ -479,4 +497,4 @@ $('p').off(); // 取消所有绑定事件
   }
 };
 
-export default selector => new Dom(selector);
+export default (selector, endSelector) => new Dom(selector, endSelector);

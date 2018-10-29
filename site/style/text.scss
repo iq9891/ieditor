@@ -22,7 +22,15 @@
   }
 
   & p {
-    margin: 10px 0 !important;
+    margin: 0 !important;
+    word-break: break-all !important;
+    line-height: inherit;
+    font-size: inherit;
+  }
+
+  & ul,
+  & ol {
+    margin: 0 !important;
     word-break: break-all !important;
     line-height: inherit;
     font-size: inherit;
