@@ -196,6 +196,7 @@ const Text = class {
   */
   cursorEnd() {
     const $last = this.$text.children().last();
+    const sel = this.editor.selection;
     let range = null;
     if (window.getSelection) {
       $last[0].focus();
@@ -209,6 +210,9 @@ const Text = class {
       // 避免产生空格
       range.select();
     }
+    // 随时保存选区
+    sel.saveRange();
+    sel.restore();
   }
 };
 

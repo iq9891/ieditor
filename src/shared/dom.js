@@ -141,7 +141,6 @@ const Dom = class {
     if (typeof params === 'string') {
       if (value) {
         return this.forEach((elem) => {
-          console.log(params === 'zIndex' ? value : px(value), params, 8888);
           elem.style[params] = params === 'line-height' || params === 'font-size' || params === 'text-indent' ? value : px(value);
         });
       }
@@ -218,7 +217,9 @@ const Dom = class {
       const newHtml = document.createElement(nodeName);
       self.parentNode.insertBefore(newHtml, self);
       newHtml.appendChild(self);
+      return new Dom(newHtml);
     }
+    return null;
   }
 
   /**
