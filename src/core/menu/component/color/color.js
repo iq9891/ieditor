@@ -3,6 +3,7 @@ import Modal from 'modal/modal';
 import $ from 'shared/dom';
 import parser from 'shared/parser';
 import { hasOwn, isArray } from 'shared/util';
+import { getStyle } from 'shared/node';
 import colorTem from './color.html';
 
 class Color extends Base {
@@ -111,9 +112,12 @@ class Color extends Base {
     const { selection, undo } = this.editor;
     if (selection.isEmpty()) {
       const $selElem = selection.getSelElem();
-      const attr = type === 'backcolor' ? 'background' : 'color';
-      selection.createRangeByElem($selElem);
-      selection.handle('insertHTML', `<span style="${attr}: ${value}">&#8203;</span>`);
+      getStyle($selElem, ($elem, elemStyle) => {
+        const attr = type === 'backcolor' ? 'background' : 'color';
+        const styles = `${elemStyle}${attr}:${value};`;
+        selection.createRangeByElem($selElem);
+        selection.handle('insertHTML', `<span style="${styles}">&#8203;</span>`);
+      });
     } else {
       // 恢复选区，不然添加不上
       selection.restore();

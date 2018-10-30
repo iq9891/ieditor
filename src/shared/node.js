@@ -47,6 +47,45 @@ export function searchNode(element, node, callback = () => {}) {
 }
 
 /**
+  * 向父级获取所有样式
+  * @param {Object} $elem must 查找的基本节点
+  * @param {String} style must 查找的样式
+  * @param {Function} callback maybe 找到匹配节点的回调函数
+  * @param {String} prevStyles must 子节点的样式
+  * @param {String} nodeName must 大写的匹配节点，也是顶级节点
+  */
+export function getStyle($elem, callback = () => {}, nodeName = 'P', prevStyles = '') {
+  // 如果这个节点是 node 要查找的节点
+  let elemStyle = delSpaces($elem.attr('style') || '') + prevStyles;
+  // 匹配配置的操作标签
+  const nName = $elem[0].nodeName;
+  const hasElem = $elem.length > 0;
+  const bold = hasElem && 'B,STRONG'.indexOf(nName) > -1 ? '' : 'font-weight:bold;';
+  const underline = hasElem && 'U'.indexOf(nName) > -1 ? '' : 'text-decoration:underline;';
+  const italic = hasElem && 'U'.indexOf(nName) > -1 ? '' : 'font-style:italic;';
+
+  if (hasElem) {
+    // 到 p 标签了 返回
+    if ($elem.length > 0 && nName === nodeName) {
+      callback($elem, [...new Set(elemStyle.split(';'))].join(';'));
+      return false;
+    }
+
+    const $parent = $elem.parent();
+    if ($parent.length) {
+      elemStyle += bold;
+      elemStyle += underline;
+      elemStyle += italic;
+      return getStyle($parent, callback, nodeName, elemStyle);
+    }
+  } else {
+    callback($elem, elemStyle);
+  }
+
+  return false;
+}
+
+/**
   * 向父级查找某一节点是否有相同的样式
   * @param {Object} $elem must 查找的基本节点
   * @param {String} style must 查找的样式
@@ -59,7 +98,7 @@ export function searchStyle($elem, styleConfig, callback = () => {}, nodeName = 
   const elemStyle = delSpaces($elem.attr('style') || '') + prevStyles;
   const matchKeyResult = !!elemStyle && elemStyle.indexOf(styleConfig.key) > -1;
   // 匹配配置的操作标签
-  const matchTagResult = $elem.length > 0 && $elem[0].nodeName === styleConfig.tag;
+  const matchTagResult = $elem.length > 0 && styleConfig.tag.indexOf($elem[0].nodeName) > -1;
   const endResult = matchKeyResult || matchTagResult;
 
   if ($elem.length > 0) {

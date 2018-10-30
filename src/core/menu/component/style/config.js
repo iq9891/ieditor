@@ -1,11 +1,11 @@
 export default {
   bold: {
     key: 'font-weight',
-    tag: 'B',
+    tag: 'B,STRONG',
   },
   italic: {
     key: 'font-style',
-    tag: 'I',
+    tag: 'I,EM',
   },
   underline: {
     key: 'text-decoration',

@@ -1,6 +1,6 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import { searchStyle, createElem8203 } from 'shared/node';
+import { insertAfter, searchStyle, createElem8203 } from 'shared/node';
 import styleTem from './style.html';
 import config from './config';
 
@@ -70,7 +70,9 @@ const Style = class {
           // 匹配的
           const node = createElem8203();
           $(node).attr('style', elemStyle.replace(new RegExp(`${styleKey}:${styleValue}(;?)`), ''));
-          this.sel.insertNode(node);
+          // this.sel.insertNode(node);
+          // 修复两个复选来回切换时候的样式问题
+          insertAfter($elem[0], node);
           this.editor.text.cursorEnd($(node));
         } else {
           const node = createElem8203();
