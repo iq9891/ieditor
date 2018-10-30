@@ -1,7 +1,7 @@
 import parser from 'shared/parser';
 import { createElement } from 'shared/node';
 import { delPx } from 'shared/px';
-import { toNumber } from 'shared/util';
+import { toNumber, keys } from 'shared/util';
 import $ from 'shared/dom';
 import modalTem from './modal.html';
 
@@ -46,12 +46,17 @@ class Modal {
   }
 
   hide() {
-    this.$modal.addClass(`${this.editor.cfg.prefix}modal-hide`);
+    this.$modal.addClass(this.editor.hideName);
   }
 
   show() {
+    const { showAlert, hideName } = this.editor;
+    keys(showAlert).forEach((modalKey) => {
+      showAlert[modalKey].addClass(hideName);
+    });
+    showAlert[this.type] = this.$modal;
     this.$modal
-      .removeClass(`${this.editor.cfg.prefix}modal-hide`)
+      .removeClass(hideName)
       .css('top', toNumber(delPx(this.$menu.css('height'))) + 1);
   }
 }

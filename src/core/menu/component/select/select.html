@@ -3,7 +3,7 @@
     <span class="{{prefix}}select-btn-font">{{placeholder}}</span>
     <i class="{{prefix}}select-btn-arrow"></i>
   </a>
-  <ul class="{{prefix}}select-list">
+  <ul class="{{prefix}}select-list {{prefix}}hide">
     {{x-for="list in data"}}
       <li class="{{prefix}}select-list-item {{prefix}}select-list-item{{uid}}">{{list}}</li>
     {{/x-for}}

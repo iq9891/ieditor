@@ -1,7 +1,7 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
 import { filterLines } from 'shared/helper';
-import { isString } from 'shared/util';
+import { isString, keys } from 'shared/util';
 import selectTem from './select.html';
 
 
@@ -60,11 +60,16 @@ const Select = class {
   }
 
   showList() {
-    this.$list.css('display', 'block');
+    const { showAlert, hideName } = this.editor;
+    keys(showAlert).forEach((modalKey) => {
+      showAlert[modalKey].addClass(hideName);
+    });
+    showAlert[this.type] = this.$list;
+    this.$list.removeClass(hideName);
   }
 
   hideList() {
-    this.$list.css('display', 'none');
+    this.$list.addClass(this.editor.hideName);
   }
 
   // 选择的元素点击

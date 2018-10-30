@@ -18,6 +18,8 @@ const IEditor = class {
     this.code = false;
     this.redo = [];
     this.undo = [];
+    // 用于关闭所有弹框
+    this.showAlert = {};
     let elem = '';
     if (isHtmlArray(options)) {
       elem = options;
@@ -43,6 +45,7 @@ const IEditor = class {
     if (this.readonly) {
       this.setStatus(this.readonly);
     }
+    this.hideName = `${this.cfg.prefix}hide`;
   }
 
   /**

@@ -22,10 +22,6 @@ $input-size: $handle-size - 21;
     margin: 0 0 4px;
   }
 
-  &-hide {
-    display: none;
-  }
-
   &-close {
     &::before,
     &::after {
