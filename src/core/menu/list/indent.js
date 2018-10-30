@@ -1,5 +1,6 @@
 import $ from 'shared/dom';
 import Base from 'base/base';
+import { searchNode } from 'shared/node';
 
 class Indent extends Base {
   constructor(editor) {
@@ -14,14 +15,16 @@ class Indent extends Base {
     if (code) {
       return;
     }
-    if (selection.isEmpty()) {
-      const $selectionElem = selection.getSelElem();
-      const indent = $selectionElem.css('text-indent');
-      edit.undo.push(edit.getHtml());
-      $selectionElem.css('text-indent', indent === '0px' ? '2em' : '0');
-      // 整体检测按钮状态
-      menu.testActive();
-    }
+    searchNode(selection.getSelElem()[0], 'P', (elem) => {
+      const $selectionElem = $(elem);
+      if ($selectionElem.length) {
+        const indent = $selectionElem.css('text-indent');
+        edit.undo.push(edit.getHtml());
+        $selectionElem.css('text-indent', indent === '0px' ? '2em' : '0');
+        // 整体检测按钮状态
+        menu.testActive();
+      }
+    });
   }
 
   // 是否是选中
