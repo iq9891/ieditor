@@ -3,14 +3,13 @@ import $ from 'shared/dom';
 import baseTem from './base.html';
 
 const IBase = class {
-  constructor(editor, type, selected = false, nodeName) {
+  constructor(editor, type, selected = false) {
     this.editor = editor;
     this.$editor = editor.$editor;
     this.cfg = editor.cfg;
     this.type = type;
     this.typeName = type;
     this.selected = selected;
-    this.nodeName = nodeName;
     // 初始化
     this.create();
   }
@@ -40,15 +39,12 @@ const IBase = class {
     const node = this.nodeName;
     // 只有选中了才有效果
     if (!sel.isEmpty() || !this.selected) {
+      console.log(1);
       edit.undo.push(edit.getHtml());
       // 操作编辑器内容
       sel.handle(type);
       // 整体检测按钮状态
       edit.menu.testActive();
-    } else if (node) {
-      const $selElem = sel.getSelElem();
-      sel.createRangeByElem($selElem);
-      sel.handle('insertHTML', `<${node}>&#8203;</${node}>`);
     }
   }
 
