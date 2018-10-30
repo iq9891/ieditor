@@ -95,6 +95,13 @@ export function createElement(nodeName) {
   return document.createElement(nodeName);
 }
 
+
+export function createElem8203() {
+  const node = document.createElement('span');
+  node.innerHTML = '&#8203;';
+  return node;
+}
+
 export function insertAfter(insertElement, targetElement) {
   const parent = insertElement.parentNode;
   //最后一个子节点 lastElementChild兼容其他浏览器 lastChild  兼容ie678;

@@ -1,6 +1,7 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import { filterLines } from 'shared/helper';
+import { createElem8203 } from 'shared/node';
+import { filterLines, hump } from 'shared/helper';
 import { isString, keys } from 'shared/util';
 import selectTem from './select.html';
 
@@ -10,6 +11,7 @@ const Select = class {
     this.editor = editor;
     this.typeName = filterLines(options.type);
     this.diy = this.editor.cfg.diy.menu;
+    this.sel = editor.selection;
     this.render(options);
   }
 
@@ -74,22 +76,50 @@ const Select = class {
 
   // 选择的元素点击
   listClick(ev) {
-    const { type, editor } = this;
-    const sel = editor.selection;
-    const html = (isString(ev) || typeof ev === 'number') ? ev : $(ev.target).html();
+    const { type } = this;
+    let html = (isString(ev) || typeof ev === 'number') ? ev : $(ev.target).html();
+    html = html.replace(/"/g, '');
     // 隐藏菜单
     this.hideList();
     // 设置
-    sel.getSelElemAll(sel.getRange(), ($elem) => {
-      if ($elem.length) {
-        // 操作编辑器内容
-        sel.restore();
+    if (this.sel.isEmpty()) {
+      this.handleCursor(type, html);
+    } else {
+      this.handleSelected(type, html);
+    }
+  }
 
-        editor.undo.push(editor.getHtml());
-        $elem.css(type, isString(html) ? html.replace(/"/g, '') : html);
-        editor.menu.testActive();
+  handleCursor(type, html) {
+    const $selElem = this.sel.getSelElem();
+    console.log(this.sel.getRange(), 999);
+
+    const range = this.sel.getRange();
+    console.log(range, 9);
+    this.sel.insertNode(document.createTextNode('text'));
+
+    if ($selElem.length) {
+      if (type === 'line-height') {
+        $selElem.css(type, html);
+      } else {
+        const node = createElem8203();
+        this.sel.insertNode(node);
+        $(node).css((hump(type)), (type === 'font-size' ? parseFloat(html) : html));
+        this.editor.text.cursorEnd($(node));
       }
-    });
+    }
+  }
+
+  handleSelected(type, html) {
+    const $elem = this.sel.getSelElem();
+    const styleValue = isString(html) ? html.replace(/"/g, '') : html;
+    if (this.typeName === 'lineheight') {
+      $elem.css(type, styleValue);
+    } else {
+      this.sel.restore();
+      let styls = $elem.attr('style') || '';
+      styls += `;${type}: ${styleValue}`;
+      this.sel.handle('insertHTML', `<span style="${styls}">${this.sel.getSelectionText()}</span>`);
+    }
   }
 
   // 是否是选中

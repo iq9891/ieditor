@@ -27,3 +27,7 @@ export const noUnit = str => styleList.filter(styleKey => styleKey === str).leng
  * 过滤中横线
  */
 export const filterLines = str => str.replace('-', '');
+/**
+ * 驼峰
+ */
+export const hump = str => str.replace(/-(\w)/g, ($0, $1) => $1.toUpperCase());

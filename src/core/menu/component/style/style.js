@@ -1,6 +1,6 @@
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import { insertAfter, searchStyle } from 'shared/node';
+import { searchStyle, createElem8203 } from 'shared/node';
 import styleTem from './style.html';
 import config from './config';
 
@@ -68,26 +68,18 @@ const Style = class {
       searchStyle($selElem, styleConfig, ($elem, elemStyle, matchResult) => {
         if (matchResult) {
           // 匹配的
-          const node = this.createElem();
+          const node = createElem8203();
           $(node).attr('style', elemStyle.replace(new RegExp(`${styleKey}:${styleValue}(;?)`), ''));
-          insertAfter($elem[0], node);
+          this.sel.insertNode(node);
           this.editor.text.cursorEnd($(node));
         } else {
-          const node = this.createElem();
-          $selElem[0].appendChild(node);
+          const node = createElem8203();
+          this.sel.insertNode(node);
           $(node).css(styleKey, styleValue);
           this.editor.text.cursorEnd($(node));
         }
       });
-
-      this.sel.delRange();
     }
-  }
-
-  createElem() {
-    const node = document.createElement('span');
-    node.innerHTML = '&#8203;';
-    return node;
   }
 
   // 是否是选中

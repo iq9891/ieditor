@@ -151,6 +151,22 @@ const Selection = class {
   }
 
   /**
+  * 插入节点
+  * @param {String} html 添加的内容
+  */
+  insertNode(html) {
+    const range = this.getRange();
+    if (range.insertNode) {
+      // IE
+      range.deleteContents();
+      range.insertNode(html);
+    } else if (range.pasteHTML) {
+      // IE <= 10
+      range.pasteHTML(html);
+    }
+  }
+
+  /**
   * 自定义 insertHTML 事件
   * @param {String} html 添加的内容
   */
