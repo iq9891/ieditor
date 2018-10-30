@@ -36,10 +36,8 @@ const IBase = class {
   click(type) {
     const edit = this.editor;
     const sel = edit.selection;
-    const node = this.nodeName;
     // 只有选中了才有效果
     if (!sel.isEmpty() || !this.selected) {
-      console.log(1);
       edit.undo.push(edit.getHtml());
       // 操作编辑器内容
       sel.handle(type);

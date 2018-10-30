@@ -85,6 +85,10 @@ export const def = (obj, key, val) => {
   });
 };
 /**
+ * 删除空格
+ */
+export const delSpaces = str => str.replace(/\s/g, '');
+/**
  * 转换成数字
  */
 export const toNumber = (val) => {

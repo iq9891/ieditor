@@ -1,8 +1,8 @@
-import Base from 'base/base';
+import Style from 'style/style';
 
-class Bold extends Base {
+class Bold extends Style {
   constructor(editor) {
-    super(editor, 'bold', true);
+    super(editor, 'bold');
   }
 }
 

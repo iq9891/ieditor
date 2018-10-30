@@ -187,6 +187,7 @@ const Text = class {
   setHtml(html = '') {
     if (html) {
       this.$text.html(html);
+      this.editor.selection.createRangeByElem(this.$text.children());
     }
     this.cursorEnd();
   }
@@ -194,8 +195,8 @@ const Text = class {
   /**
   * 新建选区，移动光标到最后
   */
-  cursorEnd() {
-    const $last = this.$text.children().last();
+  cursorEnd(last) {
+    const $last = last || this.$text.children().last();
     const sel = this.editor.selection;
     let range = null;
     if (window.getSelection) {

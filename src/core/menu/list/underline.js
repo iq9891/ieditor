@@ -1,8 +1,8 @@
-import Base from 'base/base';
+import Style from 'style/style';
 
-class Underline extends Base {
+class Underline extends Style {
   constructor(editor) {
-    super(editor, 'underline', true);
+    super(editor, 'underline');
   }
 }
 
