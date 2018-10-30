@@ -1,3 +1,30 @@
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/iq9891/ieditor/compare/v0.2.2...v0.2.3) (2018-10-29)
+
+
+### Bug Fixes
+
+* **$formatblock:** solve the confusion when the reference is not a P tag ([7bae149](https://github.com/iq9891/ieditor/commit/7bae149))
+
+
+
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/iq9891/ieditor/compare/v0.2.1...v0.2.2) (2018-10-29)
+
+
+### Bug Fixes
+
+* **$font:** solve the operation of multi-select text ([eb08669](https://github.com/iq9891/ieditor/commit/eb08669))
+* **$font:** solve the problem of font size number line high multi-line selection operation failure ([5e98722](https://github.com/iq9891/ieditor/commit/5e98722))
+* **$menu:** full screen failure and reference invalidation ([c05269b](https://github.com/iq9891/ieditor/commit/c05269b))
+
+
+### Performance Improvements
+
+* **$formatblock:** sesolve invalid operations ([9b937de](https://github.com/iq9891/ieditor/commit/9b937de))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/iq9891/ieditor/compare/v0.2.0...v0.2.1) (2018-10-25)
 
