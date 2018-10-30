@@ -91,12 +91,6 @@ const Select = class {
 
   handleCursor(type, html) {
     const $selElem = this.sel.getSelElem();
-    console.log(this.sel.getRange(), 999);
-
-    const range = this.sel.getRange();
-    console.log(range, 9);
-    this.sel.insertNode(document.createTextNode('text'));
-
     if ($selElem.length) {
       if (type === 'line-height') {
         $selElem.css(type, html);
