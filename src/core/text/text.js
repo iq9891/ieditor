@@ -1,7 +1,9 @@
+import hotkeys from 'hotkeys';
 import parser from 'shared/parser';
 import $ from 'shared/dom';
-import { hasOwn } from 'shared/util';
+import { hasOwn, keys } from 'shared/util';
 import textTem from './text.html';
+import keymap from './keymap';
 
 const Text = class {
   constructor(editor) {
@@ -69,6 +71,8 @@ const Text = class {
     this.tab();
     // 清空之后
     this.empty();
+    // 快捷键绑定
+    this.hotKeyHandle();
 
     const $reset = $(`#${prefix}reset${uid}`);
 
@@ -99,12 +103,32 @@ const Text = class {
     this.resetPosY = 0;
   }
 
+  hotKeyHandle() {
+    const { editor } = this;
+    const { menu } = editor;
+    // 如果不是定制化
+    if (menu) {
+      const { clicks } = menu;
+      hotkeys.filter = (event) => {
+        const { tagName } = event.target || event.srcElement;
+        return !(tagName.isContentEditable || tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA');
+      };
+      // 根据 keymap 配置绑定
+      keys(keymap).forEach((key) => {
+        hotkeys(`ctrl+${key},command+${key}`, clicks[keymap[key]].bind(editor));
+      });
+      // 反撤销
+      hotkeys('ctrl+shift+z,command+shift+z', clicks[keymap.y].bind(editor));
+    }
+  }
+
   // 实时保存选取
   saveRangeRealTime() {
     const $textElem = this.$text;
 
     // 保存当前的选区
     const saveRange = (e = window.event) => {
+      // 处理 tab 键(9) 删除(8)
       if (e.keyCode === 9 || e.keyCode === 8) {
         return;
       }
@@ -187,7 +211,11 @@ const Text = class {
   setHtml(html = '') {
     if (html) {
       this.$text.html(html);
-      this.editor.selection.createRangeByElem(this.$text.children());
+      const sel = this.editor.selection;
+      // 如果不是定制化
+      if (sel) {
+        this.editor.selection.createRangeByElem(this.$text.children());
+      }
     }
     this.cursorEnd();
   }
@@ -211,9 +239,12 @@ const Text = class {
       // 避免产生空格
       range.select();
     }
-    // 随时保存选区
-    sel.saveRange();
-    sel.restore();
+    // 如果不是定制化
+    if (sel) {
+      // 随时保存选区
+      sel.saveRange();
+      sel.restore();
+    }
   }
 };
 

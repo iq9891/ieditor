@@ -18,6 +18,7 @@ module.exports = {
     "import/no-unresolved": 0,
     "spaced-comment": "off",
     "no-dupe-keys": "off",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "no-console": "off",
     "no-plusplus": "off",
     "class-methods-use-this": "off",

@@ -34,6 +34,7 @@ module.exports = {
         select: resolve('src/core/menu/component/select'),
         modal: resolve('src/core/menu/component/modal'),
         color: resolve('src/core/menu/component/color'),
+        hotkeys: resolve('node_modules/hotkeys-js/dist/hotkeys.esm'),
       }
     }
   },
@@ -50,7 +51,8 @@ module.exports = {
       '/base64',
       '/i18n',
       '/video',
-      'diy',
+      '/diy',
+      '/hotkey',
     ],
   },
 }
