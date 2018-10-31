@@ -80,8 +80,9 @@ class Color extends Base {
 
     const $diy = $(`#${prefix}${type}-diy${uid}`);
 
-    $(`#${prefix}${type}${uid}`).on('click', () => {
+    $(`#${prefix}${type}${uid}`).on('click', (ev = window.event) => {
       this.show();
+      ev.stopPropagation();
     });
 
     $(`.${prefix}${type}-standard-item${uid}`).on('click', (ev = window.event) => {

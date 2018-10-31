@@ -26,8 +26,9 @@ class Video extends Base {
      || (hasOwn(cfg.diy, 'menu') && !cfg.diy.menu)) {
       this.$title = $(`#${cfg.prefix}${type}-modal-title`).attr('placeholder', cfg.placeholder.videotitle);
 
-      $(`#${cfg.prefix}${type}${editor.uid}`).on('click', () => {
+      $(`#${cfg.prefix}${type}${editor.uid}`).on('click', (ev = window.event) => {
         this.modal.show();
+        ev.stopPropagation();
       });
 
       $(`#${cfg.prefix}${type}-modal-btn`).on('click', () => {

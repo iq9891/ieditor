@@ -43,6 +43,10 @@ class Modal {
     $(`#${cfg.prefix}${type}-modal-close${editor.uid}`).on('click', () => {
       this.hide();
     });
+
+    editor.$editor.on('click', () => {
+      this.hide();
+    });
   }
 
   hide() {

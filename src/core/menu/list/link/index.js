@@ -32,7 +32,7 @@ class Link extends Base {
       this.$title = $(`${pfix}title`).attr('placeholder', defaultText.linktitle);
       this.$url = $(`${pfix}url`).attr('placeholder', defaultText.linkurl);
       // 点击菜单
-      $(`#${cfg.prefix}${type}${uid}`).on('click', () => {
+      $(`#${cfg.prefix}${type}${uid}`).on('click', (ev = window.event) => {
         const linkTitle = this.getTitle();
         // 如果当前已经是在链接上 || 已选内容
         if (linkTitle) {
@@ -44,6 +44,7 @@ class Link extends Base {
         }
 
         this.modal.show();
+        ev.stopPropagation();
       });
 
       $(`${pfix}btn`).on('click', () => {
