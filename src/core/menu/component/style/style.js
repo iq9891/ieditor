@@ -63,6 +63,7 @@ const Style = class {
     const styleConfig = config[type];
     const styleKey = styleConfig.key;
     const styleValue = type;
+    const { text, menu } = this.editor;
 
     if ($selElem.length) {
       searchStyle($selElem, styleConfig, ($elem, elemStyle, matchResult) => {
@@ -73,20 +74,27 @@ const Style = class {
           // this.sel.insertNode(node);
           // 修复两个复选来回切换时候的样式问题
           insertAfter($elem[0], node);
-          this.editor.text.cursorEnd($(node));
+          text.cursorEnd($(node));
         } else {
           const node = createElem8203();
           this.sel.insertNode(node);
           $(node).css(styleKey, styleValue);
-          this.editor.text.cursorEnd($(node));
+          text.cursorEnd($(node));
         }
+        menu.testActive();
       });
     }
   }
 
   // 是否是选中
   isActive() {
-    return false;
+    const dType = this.type;
+    const cfix = this.cfg.prefix;
+    const className = `${cfix}menu-link-active`;
+    const $item = $(`#${cfix}${dType}${this.editor.uid}`);
+    const status = document.queryCommandState(dType);
+    $item[status ? 'addClass' : 'removeClass'](className);
+    return status;
   }
 };
 
