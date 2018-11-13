@@ -14,6 +14,7 @@ const inset = (result, self, isImage = true) => {
   const { prefix, image } = self.editor.cfg;
 
   if (imgPattern.test(result) || isImage) {
+    imageId++;
     sel.handle('insertHTML', `<img id="${prefix}image${imageId}" class="${prefix}text-img" src="${image.loadimage}" draggable="true" />`);
     return $(`#${prefix}image${imageId}`);
   }
@@ -37,6 +38,7 @@ class Upload {
       const $image = inset(reader.result, self, isImage);
       reader.onload = () => {
         if ($image) {
+          console.log($image, '$image');
           $image.attr('src', reader.result);
         }
       };
