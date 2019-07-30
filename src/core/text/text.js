@@ -115,10 +115,14 @@ const Text = class {
       };
       // 根据 keymap 配置绑定
       keys(keymap).forEach((key) => {
-        hotkeys(`ctrl+${key},command+${key}`, clicks[keymap[key]].bind(editor));
+        if (hasOwn(clicks, keymap[key])) {
+          hotkeys(`ctrl+${key},command+${key}`, clicks[keymap[key]].bind(editor));
+        }
       });
       // 反撤销
-      hotkeys('ctrl+shift+z,command+shift+z', clicks[keymap.y].bind(editor));
+      if (hasOwn(clicks, keymap[keymap.y])) {
+        hotkeys('ctrl+shift+z,command+shift+z', clicks[keymap.y].bind(editor));
+      }
     }
   }
 

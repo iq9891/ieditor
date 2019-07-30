@@ -17,7 +17,28 @@ import IEditor from '../src/core/ieditor';
 
 export default {
   mounted() {
-    const edit = new IEditor(this.$refs.ied);
+    const edit = new IEditor({
+      el: this.$refs.ied,
+      image: {
+                            type: 'ajax', // 上传图片显示的类型, base64, ajax
+                            ajaxurl: 'http://gateway.inner.evente.cn:8000/public/upload', // ajax 类型的上传地址
+                            multiple: true, // 允许多选
+                        },
+      menus: [
+        'forecolor', // 字体颜色
+        'fontfamily', // 字体
+        'fontsize', // 字号
+        'lineheight', // 行高
+        'bold', // 加粗
+        'justifycenter', // 居中对齐
+        'justifyfull', // 两端对齐
+        'justifyleft', // 左对齐
+        'justifyright', // 右对齐
+        'insertorderedlist', // 有序列表
+        'insertunorderedlist', // 无序列表
+        'image', // 图片
+    ],
+    });
     edit.init();
   }
 };

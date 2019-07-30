@@ -13,8 +13,8 @@ const inset = (result, self, isImage = true) => {
   const { uid } = self.editor;
 
   if (imgPattern.test(result) || isImage) {
-    sel.handle('insertHTML', `<img class="${prefix}text-img" src="${image.loadimage}" draggable="true" />`);
-    return $(`#${prefix}text${uid} img[src="${image.loadimage}"]`);
+    sel.handle('insertHTML', `<img class="${prefix}text-img" src="${image.loadimage}" draggable="true" loading="true" />`);
+    return $(`#${prefix}text${uid} img[loading="true"]`);
   }
   return null;
 }
@@ -36,7 +36,7 @@ class Upload {
       const $image = inset(reader.result, self, isImage);
       reader.onload = () => {
         if ($image) {
-          $image.attr('src', reader.result);
+          $image.attr('src', reader.result).attr('loading', false);
         }
       };
     });
@@ -70,7 +70,7 @@ class Upload {
               onSuccess: (res) => {
                 const url = success(res);
                 if ($image) {
-                  $image.attr('src', url);
+                  $image.attr('src', url).attr('loading', false);
                 }
                 recursionAjax(--now);
               },
