@@ -2,8 +2,6 @@ import ajax from 'shared/ajax';
 import $ from 'shared/dom';
 import { keys } from './util';
 
-let imageId = 0;
-
 const inset = (result, self, isImage = true) => {
   const sel = self.editor.selection;
   // 恢复选区，不然添加不上
@@ -12,11 +10,11 @@ const inset = (result, self, isImage = true) => {
   /* eslint-disable */
   const imgPattern = /https?:\/\/.+\.(jpg|gif|png|svg|jpeg)/;
   const { prefix, image } = self.editor.cfg;
+  const { uid } = self.editor;
 
   if (imgPattern.test(result) || isImage) {
-    imageId++;
-    sel.handle('insertHTML', `<img id="${prefix}image${imageId}" class="${prefix}text-img" src="${image.loadimage}" draggable="true" />`);
-    return $(`#${prefix}image${imageId}`);
+    sel.handle('insertHTML', `<img class="${prefix}text-img" src="${image.loadimage}" draggable="true" />`);
+    return $(`#${prefix}text${uid} img[src="${image.loadimage}"]`);
   }
   return null;
 }
@@ -38,7 +36,6 @@ class Upload {
       const $image = inset(reader.result, self, isImage);
       reader.onload = () => {
         if ($image) {
-          console.log($image, '$image');
           $image.attr('src', reader.result);
         }
       };
@@ -75,7 +72,6 @@ class Upload {
                 if ($image) {
                   $image.attr('src', url);
                 }
-                imageId++;
                 recursionAjax(--now);
               },
               onError: (err, response) => {
