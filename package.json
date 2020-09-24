@@ -1,6 +1,6 @@
 {
   "name": "@iq9891/ieditor",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "PC 端 Web 富文本编辑器",
   "main": "dist/ieditor.js",
   "unpkg": "dist/ieditor.js",
