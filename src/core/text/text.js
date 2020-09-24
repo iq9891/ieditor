@@ -232,9 +232,13 @@ const Text = class {
     const sel = this.editor.selection;
     let range = null;
     if (window.getSelection) {
-      $last[0].focus();
+      if ($last[0].focus) {
+        $last[0].focus();
+      }
       range = window.getSelection();
-      range.selectAllChildren($last[0]);
+      if ($last[0]) {
+        range.selectAllChildren($last[0]);
+      }
       range.collapseToEnd();
     } else if (document.selection) {
       range = document.selection.createTextRange();
