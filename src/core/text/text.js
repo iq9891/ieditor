@@ -232,11 +232,11 @@ const Text = class {
     const sel = this.editor.selection;
     let range = null;
     if (window.getSelection) {
-      if ($last[0].focus) {
+      if ($last && $last && $last[0] && [0].focus) {
         $last[0].focus();
       }
       range = window.getSelection();
-      if ($last[0]) {
+      if ($last && $last[0]) {
         range.selectAllChildren($last[0]);
       }
       range.collapseToEnd();
